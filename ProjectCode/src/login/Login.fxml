@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane prefHeight="238.0" prefWidth="379.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+   <top>
+      <GridPane prefHeight="117.0" prefWidth="379.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label prefHeight="65.0" prefWidth="181.0" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="user" prefHeight="16.0" prefWidth="228.0" promptText="Use &quot;open&quot; to login" text="open" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="password" prefHeight="17.0" prefWidth="228.0" promptText="Use &quot;sesame&quot; to login" text="sesame" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="109.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="189.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="74.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="254.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Login" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
