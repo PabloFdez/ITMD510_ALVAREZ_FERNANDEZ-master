@@ -1,6 +1,6 @@
 # ITMD510_ALVAREZ_FERNANDEZ
 
-Final Project ITMD 510 
+<b>Final Project ITMD 510 
 
 Pablo Ángel Álvarez Fernández&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A20453837
 
