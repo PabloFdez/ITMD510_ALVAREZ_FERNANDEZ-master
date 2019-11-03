@@ -18,4 +18,36 @@ public class Student extends AcademicMember{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	/**
+	 * @return the gpa
+	 */
+	public double getGpa() {
+		return gpa;
+	}
+
+
+	/**
+	 * @param gpa the gpa to set
+	 */
+	public void setGpa(double gpa) {
+		this.gpa = gpa;
+	}
+
+
+	/**
+	 * @return the major
+	 */
+	public String getMajor() {
+		return major;
+	}
+
+
+	/**
+	 * @param major the major to set
+	 */
+	public void setMajor(String major) {
+		this.major = major;
+	}
 }
