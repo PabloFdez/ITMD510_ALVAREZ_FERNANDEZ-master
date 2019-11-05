@@ -76,11 +76,11 @@ public class DBCreate {
 		// Execute a query
 		System.out.println("Inserting dummy records of professors into the table...");
 
-		Professor p1 = new Professor(null);
-		Professor p2 = new Professor(null);
-		Professor p3 = new Professor(null);
-		Professor p4 = new Professor(null);
-		Professor p5 = new Professor(null);
+		Professor p1 = new Professor("Luke", "Papademas", "lpapademas", "ITMD","ITM",342);
+		Professor p2 = new Professor("James", "Papademas", "lpapademas", "ITMD","ITM",163);
+		Professor p3 = new Professor("Dr", "Mo", "dmo", "ITMS","ITM",643);
+		Professor p4 = new Professor("Ramesh", "Rao", "rrao", "ITME","ITM",281);
+		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek", "ITMD","ITM",207);
 		
 		DB.insertProfessor(p1);
 		DB.insertProfessor(p2);
