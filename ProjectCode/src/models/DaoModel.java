@@ -150,6 +150,46 @@ public class DaoModel {
 		 return rs;
 	}
 	
+	/**
+	 * @return record retrieved
+	 * retrieveRecords
+	 */
+	public ResultSet retrieveUniversityInfo() {//always close out of your connections 
+		 ResultSet rs = null;
+		 try {
+			Statement stmt = DB.con.createStatement();
+			System.out.println("Retrieving Records...");
+			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			System.out.println("Records are now retrieved");
+			
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 return rs;
+	}
+	
+	/**
+	 * @return record retrieved
+	 * retrieveRecords
+	 */
+	public ResultSet retrieveCourseInfo() {//always close out of your connections 
+		 ResultSet rs = null;
+		 try {
+			Statement stmt = DB.con.createStatement();
+			System.out.println("Retrieving Records...");
+			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			System.out.println("Records are now retrieved");
+			
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 return rs;
+	}
+	
 	public ResultSet QueryResu(String sentencia) {
 		// querys que devuelven resultados
 		try {
