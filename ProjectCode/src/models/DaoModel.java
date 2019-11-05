@@ -119,7 +119,7 @@ public class DaoModel {
 		 try {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
-			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			String sql = "SELECT * FROM students";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
@@ -139,7 +139,7 @@ public class DaoModel {
 		 try {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
-			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			String sql = "SELECT * FROM professors";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
@@ -159,7 +159,7 @@ public class DaoModel {
 		 try {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
-			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			String sql = "SELECT * FROM university";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
@@ -179,7 +179,7 @@ public class DaoModel {
 		 try {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
-			String sql = "";//select pid, id,income, pep from p_alva_tab order by pep desc, income desc";
+			String sql = "SELECT * FROM courses";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
