@@ -55,11 +55,11 @@ public class DBCreate {
 		// Execute a query
 		System.out.println("Inserting dummy records of students into the table...");
 		
-		Student s1 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s2 = new Student("Pablo", "Alvarez", "palvarezfernandez@hawk.iit.edu", "ITM");
-		Student s3 = new Student("John", "Jonnes", "jjonnes20@hawk.iit.edu", "CFS");
-		Student s4 = new Student("Sarah", "Hernandez", "shernandez8@hawk.iit.edu", "SAC");
-		Student s5 = new Student("Luis", "Rajoy", "lrajoy@hawk.iit.edu", "MCS");
+		Student s1 = new Student("Pablo", "Fernandez", "pfernandezdiaz", "ITM");
+		Student s2 = new Student("Pablo", "Alvarez", "palvarezfernandez", "ITM");
+		Student s3 = new Student("John", "Jonnes", "jjonnes20", "CFS");
+		Student s4 = new Student("Sarah", "Hernandez", "shernandez8", "SAC");
+		Student s5 = new Student("Luis", "Rajoy", "lrajoy", "MCS");
 		
 		DB.insertStudent(s1);
 		DB.insertStudent(s2);
@@ -76,6 +76,17 @@ public class DBCreate {
 		// Execute a query
 		System.out.println("Inserting dummy records of professors into the table...");
 
+		Professor p1 = new Professor(null);
+		Professor p2 = new Professor(null);
+		Professor p3 = new Professor(null);
+		Professor p4 = new Professor(null);
+		Professor p5 = new Professor(null);
+		
+		DB.insertProfessor(p1);
+		DB.insertProfessor(p2);
+		DB.insertProfessor(p3);
+		DB.insertProfessor(p4);
+		DB.insertProfessor(p5);
 		System.out.println("Insertion completed");
 	}
 }
