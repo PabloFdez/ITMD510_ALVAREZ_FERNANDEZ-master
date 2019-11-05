@@ -42,7 +42,7 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO p_alva_tab(id,income,pep) " + 
+			sql = "INSERT INTO students(id,income,pep) " + 
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
 			stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
@@ -62,7 +62,47 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO p_alva_tab(id,income,pep) " + 
+			sql = "INSERT INTO professors(id,income,pep) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+				stmt.executeUpdate(sql);
+			System.out.println("Insertion correct");
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+	}
+	
+	/**
+	 * @param robjs (list of records)
+	 * INSERT INTO METHOD
+	 */
+	public void insertUniversity(Univeristy objs) {
+		try {
+			// Execute a query
+			System.out.println("Inserting records into the table...");
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "INSERT INTO university(id,income,pep) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+				stmt.executeUpdate(sql);
+			System.out.println("Insertion correct");
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+	}
+	
+	/**
+	 * @param robjs (list of records)
+	 * INSERT INTO METHOD
+	 */
+	public void insertCourse(Course objs) {
+		try {
+			// Execute a query
+			System.out.println("Inserting records into the table...");
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "INSERT INTO courses(id,income,pep) " + 
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
 				stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
