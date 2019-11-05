@@ -42,18 +42,21 @@ public class DBCreate {
 			String sql = "";//CREATE TABLE p_alva_tab" + "(pid INTEGER not NULL AUTO_INCREMENT, "
 			// +" id VARCHAR(10), " + " income numeric(8,2), " + " pep VARCHAR(3), " + " PRIMARY KEY ( pid ))";
 			DB.QueryResu(sql);
-			insertDummyRecords();
+			// Inserting students on the data base
+			insertDummyRecordsStudents();
+			// Inserting professors on the data base
+			insertDummyRecordsProfessors();
 	}
 	
 	/**
 	 * INSERT INTO METHOD for dummy initial records
 	 */
-	public void insertDummyRecords() {
+	public void insertDummyRecordsStudents() {
 		// Execute a query
-		System.out.println("Inserting dummy records into the table...");
+		System.out.println("Inserting dummy records of students into the table...");
 		
 		Student s1 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s2 = new Student("Pablo", "Alvarez", "paalvarezfernandez@hawk.iit.edu", "ITM");
+		Student s2 = new Student("Pablo", "Alvarez", "palvarezfernandez@hawk.iit.edu", "ITM");
 		Student s3 = new Student("John", "Jonnes", "jjonnes20@hawk.iit.edu", "CFS");
 		Student s4 = new Student("Sarah", "Hernandez", "shernandez8@hawk.iit.edu", "SAC");
 		Student s5 = new Student("Luis", "Rajoy", "lrajoy@hawk.iit.edu", "MCS");
@@ -63,6 +66,16 @@ public class DBCreate {
 		DB.insertStudent(s3);
 		DB.insertStudent(s4);
 		DB.insertStudent(s5);
-		System.out.println("Insertion correct");
+		System.out.println("Insertion completed");
+	}
+	
+	/**
+	 * INSERT INTO METHOD for dummy initial records
+	 */
+	public void insertDummyRecordsProfessors() {
+		// Execute a query
+		System.out.println("Inserting dummy records of professors into the table...");
+
+		System.out.println("Insertion completed");
 	}
 }
