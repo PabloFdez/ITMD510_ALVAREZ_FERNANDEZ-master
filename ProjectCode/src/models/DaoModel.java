@@ -62,7 +62,7 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO professors(id,income,pep) " + 
+			sql = "INSERT INTO professors(pFName, pLName, pEMail, pMajor, pDept, pOffi) " + 
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
 				stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
