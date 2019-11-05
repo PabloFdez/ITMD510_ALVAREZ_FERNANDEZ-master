@@ -53,10 +53,10 @@ public class DBCreate {
 		System.out.println("Inserting dummy records into the table...");
 		
 		Student s1 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s2 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s3 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s4 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
-		Student s5 = new Student("Pablo", "Fernandez", "pfernandezdiaz@hawk.iit.edu", "ITM");
+		Student s2 = new Student("Pablo", "Alvarez", "paalvarezfernandez@hawk.iit.edu", "ITM");
+		Student s3 = new Student("John", "Jonnes", "jjonnes20@hawk.iit.edu", "CFS");
+		Student s4 = new Student("Sarah", "Hernandez", "shernandez8@hawk.iit.edu", "SAC");
+		Student s5 = new Student("Luis", "Rajoy", "lrajoy@hawk.iit.edu", "MCS");
 		
 		DB.insertStudent(s1);
 		DB.insertStudent(s2);
