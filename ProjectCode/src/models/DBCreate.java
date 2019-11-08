@@ -4,7 +4,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import application.Student;
+import application.*;
 
 public class DBCreate {
 	DaoModel DB;
@@ -36,12 +36,33 @@ public class DBCreate {
 	}
 	
 	/**
-	 * Create the table p_alva_p_fern_final
+	 * Create the different tables with the structure 
 	 */
 	public void createTable() {
-			String sql = "";//CREATE TABLE p_alva_tab" + "(pid INTEGER not NULL AUTO_INCREMENT, "
-			// +" id VARCHAR(10), " + " income numeric(8,2), " + " pep VARCHAR(3), " + " PRIMARY KEY ( pid ))";
+			String sql = "CREATE TABLE students" + "(eID INTEGER not NULL AUTO_INCREMENT, "
+			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(2,2), " + " PRIMARY KEY ( eID ));";
+			
+			String sql1 = "CREATE TABLE professors" + "(pID INTEGER not NULL AUTO_INCREMENT, "
+			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
+			
+			String sql2 = "CREATE TABLE universities" + "(uAcronym VARCHAR(10), " + " uName VARCHAR(30), " + " uCity VARCHAR(20), " + " uZipCode INTEGER, " + " PRIMARY KEY ( uAcronym ));";
+			
+			String sql3 = "CREATE TABLE courses" + "(cID INTEGER not NULL AUTO_INCREMENT, "
+			+" cName VARCHAR(30), " + " cCredits INTEGER, " + " cProf INTEGER, " + " cUni VARCHAR(10), " + " PRIMARY KEY ( cID )"+
+			"CONSTRAINT FK_ProfFOREIGN KEY (cProf) REFERENCES professors(pID),"+
+			"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES universities(uID));";
+			
+			String sql4 = "CREATE TABLE courseStudents (cID INTGER not NULL, eID INTEGER not NULL ,CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
+			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES courses(cID),"+
+			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES students(eID));";
+					
+			
 			DB.QueryResu(sql);
+			DB.QueryResu(sql1);
+			DB.QueryResu(sql2);
+			DB.QueryResu(sql3);
+			DB.QueryResu(sql4);
+			
 			// Inserting students on the data base
 			insertDummyRecordsStudents();
 			// Inserting professors on the data base
@@ -50,6 +71,8 @@ public class DBCreate {
 			insertDummyRecordsUniversity();
 			// Inserting courses on the data base
 			insertDummyRecordsCourses();
+			// Inserting students on courses on the data base
+			insertDummyRecordsCourseStudentsTable();
 		
 	}
 	
@@ -81,11 +104,11 @@ public class DBCreate {
 		// Execute a query
 		System.out.println("Inserting dummy records of professors into the table...");
 
-		Professor p1 = new Professor("Luke", "Papademas", "lpapademas", "ITMD","ITM",342);
-		Professor p2 = new Professor("James", "Papademas", "lpapademas", "ITMD","ITM",163);
-		Professor p3 = new Professor("Dr", "Mo", "dmo", "ITMS","ITM",643);
-		Professor p4 = new Professor("Ramesh", "Rao", "rrao", "ITME","ITM",281);
-		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek", "ITMD","ITM",207);
+		Professor p1 = new Professor("Luke", "Papademas", "lpapademas","ITM",342);
+		Professor p2 = new Professor("James", "Papademas", "lpapademas","ITM",163);
+		Professor p3 = new Professor("Dr", "Mo", "dmo","ITM",643);
+		Professor p4 = new Professor("Ramesh", "Rao", "rrao","ITM",281);
+		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek","ITM",207);
 		
 		DB.insertProfessor(p1);
 		DB.insertProfessor(p2);
@@ -102,8 +125,8 @@ public class DBCreate {
 		// Execute a query
 		System.out.println("Inserting dummy records of university into the table...");
 
-		University u1 = new University(100, "IIT", "Illinois Institute of Technology", "Chicago","60616");
-		University u2 = new University(200, "UPM", "Universidad Politecnica de Madrid", "Madrid","28882");
+		University u1 = new University("IIT", "Illinois Institute of Technology", "Chicago",60616);
+		University u2 = new University("UPM", "Universidad Politecnica de Madrid", "Madrid",28882);
 		
 		DB.insertUniversity(u1);
 		DB.insertUniversity(u2);
@@ -113,30 +136,52 @@ public class DBCreate {
 		/**
 	 * INSERT INTO METHOD for dummy initial records
 	 */
-	public void insertDummyRecordsCourses() {
-		// Execute a query
-		System.out.println("Inserting dummy records of courses into the table...");
-		
-		Professor p1 = new Professor("Luke", "Papademas", "lpapademas", "ITMD","ITM",342);
-		Professor p2 = new Professor("James", "Papademas", "lpapademas", "ITMD","ITM",163);
-		Professor p3 = new Professor("Dr", "Mo", "dmo", "ITMS","ITM",643);
-		Professor p4 = new Professor("Ramesh", "Rao", "rrao", "ITME","ITM",281);
-		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek", "ITMD","ITM",207);
-		
-		University u1 = new University(100, "IIT", "Illinois Institute of Technology", "Chicago","60616");
-		University u2 = new University(200, "UPM", "Universidad Politecnica de Madrid", "Madrid","28882");
 
-		Course c1 = new Course("Database Security", 101, 3, p3,u1);
-		Course c2 = new Course("Programacion Concurrente", 201, 6, p2,u2);
-		Course c3 = new Course("Security Topics", 102, 3, p3,u1);
-		Course c4 = new Course("Inteligencia Artifical", 202, 3, p5,u2);
-		Course c5 = new Course("Vendor Management", 103, 3, p4,u1);
+	public void insertDummyRecordsCourseStudentsTable() {
+		// Execute a query
+		System.out.println("Inserting dummy records of courses and students into the table...");
 		
-		DB.insertCourse(c1);
-		DB.insertCourse(c2);
-		DB.insertCourse(c3);
-		DB.insertCourse(c4);
-		DB.insertCourse(c5);
+		Student s1 = DB.selectStudent("Fernandez");
+		Student s2 = DB.selectStudent("Alvarez");
+		Student s3 = DB.selectStudent("Jonnes");
+		
+		Course c1 = DB.selectCourse("Database Security");
+		Course c2 = DB.selectCourse("Programacion Concurrente");
+
+		DB.insertCourseStudents(c1.getcID(),s1.getId());
+		DB.insertCourseStudents(c1.getcID(),s2.getId());
+		DB.insertCourseStudents(c2.getcID(),s2.getId());
+		DB.insertCourseStudents(c2.getcID(),s3.getId());
 		System.out.println("Insertion completed");
 	}
+	/**
+ * INSERT INTO METHOD for dummy initial records
+ */
+
+public void insertDummyRecordsCourses() {
+	// Execute a query
+	System.out.println("Inserting dummy records of courses into the table...");
+	
+	University u1 = DB.selectUniversity("IIT");
+	University u2 = DB.selectUniversity("UPM");
+	
+	Professor p1 = DB.selectProfesor(643);
+	Professor p2 = DB.selectProfesor(163);
+	Professor p3 = DB.selectProfesor(281);
+	Professor p4 = DB.selectProfesor(207);
+	
+
+	Course c1 = new Course("Database Security", 3, p1,u1);
+	Course c2 = new Course("Programacion Concurrente", 6, p2,u2);
+	Course c3 = new Course("Security Topics", 3, p1,u1);
+	Course c4 = new Course("Inteligencia Artifical", 3, p4,u2);
+	Course c5 = new Course("Vendor Management", 3, p3,u1);
+	
+	DB.insertCourse(c1);
+	DB.insertCourse(c2);
+	DB.insertCourse(c3);
+	DB.insertCourse(c4);
+	DB.insertCourse(c5);
+	System.out.println("Insertion completed");
+}
 }

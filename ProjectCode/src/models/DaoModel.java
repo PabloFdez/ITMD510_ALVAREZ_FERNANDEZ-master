@@ -5,8 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import application.Professor;
-import application.Student;
+import application.*;
 
 /**
  * @author Pablo Angel Alvarez Fernandez
@@ -42,8 +41,8 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO students(id,income,pep) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+			sql = "INSERT INTO students(eFName, eLName, eEMail, eMaj, eGPA) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"', '"+objs.getMajor()+"', "+objs.getGpa()+")";
 			stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
 			DB.con.close();
@@ -62,8 +61,8 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO professors(pFName, pLName, pEMail, pMajor, pDept, pOffi) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+			sql = "INSERT INTO professors(pFName, pLName, pEMail, pDept, pOffi) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"', '"+objs.getEmail()+"', '"+objs.getDept()+"', "+objs.getOfficeNo()+")";
 				stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
 			DB.con.close();
@@ -74,7 +73,7 @@ public class DaoModel {
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertUniversity(Univeristy objs) {
+	public void insertUniversity(University objs) {
 		try {
 			// Execute a query
 			System.out.println("Inserting records into the table...");
@@ -82,8 +81,8 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO university(id,income,pep) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+			sql = "INSERT INTO universities( uAcronym, uName, uCity, uZipCode) " + 
+				"VALUES ('"+objs.getUniAcronym()+"','"+objs.getUniName()+"','"+objs.getUniCity()+"',"+objs.getUniZipCode()+",)";
 				stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
 			DB.con.close();
@@ -102,14 +101,150 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO courses(id,income,pep) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getLastName()+"')";
+			sql = "INSERT INTO courses(cName, cCredits, cProf, cUni)"+ 
+				"VALUES ('"+objs.getcName()+"', "+objs.getnCredits()+", "+objs.getProf().getId()+", '"+objs.getUni().getUniAcronym()+"')";
 				stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
 			DB.con.close();
 		} catch (SQLException se) { se.printStackTrace();  }
 	}	
 
+	/**
+	 * @param robjs (list of records)
+	 * INSERT INTO METHOD
+	 */
+	public void insertCourseStudents(int cID, int eID) {
+		try {
+			// Execute a query
+			System.out.println("Inserting records into the table...");
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "INSERT INTO courseStudents(cID, eID)"+ 
+				"VALUES ("+cID+", "+eID+")";
+				stmt.executeUpdate(sql);
+			System.out.println("Insertion correct");
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+	}	
+
+	
+	public University selectUniversity(String nombreUni) {
+		 ResultSet rs = null;
+		 University uAux = null;
+		try {
+			// Execute a query
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "SELECT * FROM universities WHERE uAcronym = "+nombreUni+";";
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+		 try {
+			rs.next();
+			uAux = new University(rs.getString(0),rs.getString(1),rs.getString(2),rs.getInt(3));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return uAux; 
+	}
+	
+	public Professor selectProfesor(int offN) {
+		 ResultSet rs = null;
+		 Professor pAux = null;
+		try {
+			// Execute a query
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "SELECT * FROM professors WHERE pOffi = "+offN+";";
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+		 try {
+			rs.next();
+			pAux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return pAux; 
+	}
+	
+	public Professor selectProfesor2(int pID) {
+		 ResultSet rs = null;
+		 Professor pAux = null;
+		try {
+			// Execute a query
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "SELECT * FROM professors WHERE pID = "+pID+";";
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+		 try {
+			rs.next();
+			pAux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return pAux; 
+	}
+	
+	public Student selectStudent(String lName) {
+		 ResultSet rs = null;
+		 Student sAux = null;
+		try {
+			// Execute a query
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "SELECT * FROM students WHERE eLName = "+lName+";";
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+		 try {
+			rs.next();
+			sAux = new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return sAux; 
+	}
+	
+	public Course selectCourse(String cName) {
+		 ResultSet rs = null;
+		 Course cAux = null;
+		try {
+			// Execute a query
+			Statement stmt = DB.con.createStatement();
+			String sql = null;
+					  
+			// Include all object data to the database table
+			sql = "SELECT * FROM courses WHERE eLName = "+cName+";";
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException se) { se.printStackTrace();  }
+		 try {
+			rs.next();
+			cAux = new Course(rs.getString(0),rs.getInt(1),selectProfesor2(rs.getInt(2)),selectUniversity(rs.getString(3))); // Sacar los estudiantes del curso
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return cAux; 
+	}
+	
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
@@ -159,7 +294,7 @@ public class DaoModel {
 		 try {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM university";
+			String sql = "SELECT * FROM universities";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
@@ -180,6 +315,26 @@ public class DaoModel {
 			Statement stmt = DB.con.createStatement();
 			System.out.println("Retrieving Records...");
 			String sql = "SELECT * FROM courses";
+			System.out.println("Records are now retrieved");
+			
+			rs = stmt.executeQuery(sql);
+			DB.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 return rs;
+	}
+	
+	/**
+	 * @return record retrieved
+	 * retrieveRecords
+	 */
+	public ResultSet retrieveCourseStudentInfo() {//always close out of your connections 
+		 ResultSet rs = null;
+		 try {
+			Statement stmt = DB.con.createStatement();
+			System.out.println("Retrieving Records...");
+			String sql = "SELECT * FROM courseStudents";
 			System.out.println("Records are now retrieved");
 			
 			rs = stmt.executeQuery(sql);
