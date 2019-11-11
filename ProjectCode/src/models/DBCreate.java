@@ -40,10 +40,10 @@ public class DBCreate {
 	 */
 	public void createTable() {
 			String sql = "CREATE TABLE students" + "(eID INTEGER not NULL AUTO_INCREMENT, "
-			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(2,2), " + " PRIMARY KEY ( eID ));";
+			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " ePassword VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(2,2), " + " PRIMARY KEY ( eID ));";
 			
 			String sql1 = "CREATE TABLE professors" + "(pID INTEGER not NULL AUTO_INCREMENT, "
-			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
+			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pPassword VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
 			
 			String sql2 = "CREATE TABLE universities" + "(uAcronym VARCHAR(10), " + " uName VARCHAR(30), " + " uCity VARCHAR(20), " + " uZipCode INTEGER, " + " PRIMARY KEY ( uAcronym ));";
 			
@@ -89,11 +89,26 @@ public class DBCreate {
 		Student s4 = new Student("Sarah", "Hernandez", "shernandez8", "SAC");
 		Student s5 = new Student("Luis", "Rajoy", "lrajoy", "MCS");
 		
+		// Update Passwords
+		String sql = "Update students SET ePassword = 'pass'  WHERE eEMail = 'pfernandezdiaz@hawk.iit.edu';";
+		String sql2 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'palvarezfernandez@hawk.iit.edu';";
+		String sql3 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'jjonnes20@hawk.iit.edu';";
+		String sql4 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'shernandez8@hawk.iit.edu';";
+		String sql5 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'lrajoy@hawk.iit.edu';";
+						
+		// Insert Students
 		DB.insertStudent(s1);
 		DB.insertStudent(s2);
 		DB.insertStudent(s3);
 		DB.insertStudent(s4);
 		DB.insertStudent(s5);
+		
+		// Insert Passwords
+		DB.QueryResu(sql);
+		DB.QueryResu(sql2);
+		DB.QueryResu(sql3);
+		DB.QueryResu(sql4);
+		DB.QueryResu(sql5);
 		System.out.println("Insertion completed");
 	}
 	
@@ -105,16 +120,30 @@ public class DBCreate {
 		System.out.println("Inserting dummy records of professors into the table...");
 
 		Professor p1 = new Professor("Luke", "Papademas", "lpapademas","ITM",342);
-		Professor p2 = new Professor("James", "Papademas", "lpapademas","ITM",163);
+		Professor p2 = new Professor("James", "Papademas", "jpapademas","ITM",163);
 		Professor p3 = new Professor("Dr", "Mo", "dmo","ITM",643);
 		Professor p4 = new Professor("Ramesh", "Rao", "rrao","ITM",281);
 		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek","ITM",207);
+		
+		// Update Passwords
+		String sql = "Update students SET ePassword = 'pass'  WHERE eEMail = 'lpapademas@iit.edu';";
+		String sql2 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'jpapademas@iit.edu';";
+		String sql3 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'dmo@iit.edu';";
+		String sql4 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'rrao@iit.edu';";
+		String sql5 = "Update students SET ePassword = 'pass'  WHERE eEMail = 'jhajek@iit.edu';";
 		
 		DB.insertProfessor(p1);
 		DB.insertProfessor(p2);
 		DB.insertProfessor(p3);
 		DB.insertProfessor(p4);
 		DB.insertProfessor(p5);
+		
+		// Insert Passwords
+		DB.QueryResu(sql);
+		DB.QueryResu(sql2);
+		DB.QueryResu(sql3);
+		DB.QueryResu(sql4);
+		DB.QueryResu(sql5);
 		System.out.println("Insertion completed");
 	}
 	

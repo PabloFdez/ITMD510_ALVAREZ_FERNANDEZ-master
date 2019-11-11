@@ -29,7 +29,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="254.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Login" />
+            <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="223.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Register" />
+            <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="47.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Login" />
          </children>
       </AnchorPane>
    </center>

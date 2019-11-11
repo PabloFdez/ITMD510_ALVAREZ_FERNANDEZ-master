@@ -41,8 +41,8 @@ public class DaoModel {
 			String sql = null;
 					  
 			// Include all object data to the database table
-			sql = "INSERT INTO students(eFName, eLName, eEMail, eMaj, eGPA) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"', '"+objs.getMajor()+"', "+objs.getGpa()+")";
+			sql = "INSERT INTO students(eFName, eLName, eEMail, ePassword, eMaj, eGPA) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"','', '"+objs.getMajor()+"', "+objs.getGpa()+")";
 			stmt.executeUpdate(sql);
 			System.out.println("Insertion correct");
 			DB.con.close();
@@ -350,6 +350,7 @@ public class DaoModel {
 		try {
 			Statement stmt = DB.con.createStatement();
 			ResultSet result = stmt.executeQuery(sentencia);
+			DB.con.close();
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -363,10 +364,41 @@ public class DaoModel {
 			Statement stmt = DB.con.createStatement();
 			stmt.executeUpdate(sentencia);
 			stmt.close();
+			DB.con.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public AcademicMember login(String user, String pass) {
+		// TODO
+		ResultSet rs = null;
+		AcademicMember AMaux = null;
+		
+		rs = QueryResu("SELECT * FROM students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
+		try {
+			if(rs.next()){
+				AMaux = new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(AMaux == null){
+			rs = QueryResu("SELECT * FROM profesor WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
+			try {
+				if(rs.next()){
+					AMaux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		 return AMaux; 
 	}
 }

@@ -2,6 +2,8 @@ package login;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import models.AcademicMember;
+import models.DaoModel;
 
 /** Controls the login screen */
 public class LoginController {
@@ -9,13 +11,16 @@ public class LoginController {
 	@FXML private TextField user;
 	@FXML private TextField password;
 	@FXML private Button loginButton;
+	DaoModel DB;
 
 	// public void initialize() {}
 
 	public void initManager() {
-		String sessionID = authorize();
-		if (sessionID != null) 
-			authenticated(sessionID);
+		DB = new DaoModel();
+		AcademicMember AClog = authorize();
+		if (AClog != null){
+			authenticated(AClog);			
+		}
 	}
 
 	/**
@@ -23,27 +28,30 @@ public class LoginController {
 	 * 
 	 * If accepted, return a sessionID for the authorized session
 	 * otherwise, return null.
-	 */   
-	private String authorize() {
+	 */ 
+	// offline option
+	/*private String authorize() {
 		return "open".equals(user.getText()) && "sesame".equals(password.getText()) 
 				? generateSessionID() 
 						: null;
-	}
-
-	private static int sessionID = 0;
-
-	private String generateSessionID() {
-		sessionID++;
-		return "finalProj - session " + sessionID;
+	}*/
+	
+	private AcademicMember authorize() {
+		return DB.login(user.getText(),password.getText());
 	}
 
 	/**
 	 * Callback method invoked to notify that a user has been authenticated. Will
 	 * show the main application screen.
 	 */
-	public void authenticated(String sessionID) {
-		System.out.println(sessionID);
+	public void authenticated(AcademicMember aClog) {
+		System.out.println("User " + aClog.getFirstName() + " has been registered, proproceding to user page.");
 		//showMainView(sessionID);
+		if(aClog.getEmail().contentEquals("hawk.iit.edu")){
+			System.out.println("go to student page");
+		} else {
+			System.out.println("go to prof page");
+		}
 	}
 
 	/**
