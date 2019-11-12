@@ -15,234 +15,155 @@ import application.*;
  * CRUD (Create Read Update Delete) like operations
  */
 public class DaoModel {
-	Connection con = null;
-	static DaoModel DB = null;
+	//static Connection con = null;
+	//static DaoModel DB = null;
 
 	/**
 	 * constructor
 	 * @return 
 	 */
 	public DaoModel() { // create db object instance
-		if (DB == null) {
-			DB = new DaoModel();
-			con = new DBConnect().connection;
-		}
+		new DBCreate();
 	}
 		
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertStudent(Student objs) {
-		try {
-			// Execute a query
-			System.out.println("Inserting records into the table...");
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "INSERT INTO students(eFName, eLName, eEMail, ePassword, eMaj, eGPA) " + 
+	public static void insertStudent(Student objs) {
+		System.out.println("Inserting records into the table...");
+		String sql = "INSERT INTO papf_students(eFName, eLName, eEMail, ePassword, eMaj, eGPA) " + 
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"','', '"+objs.getMajor()+"', "+objs.getGpa()+")";
-			stmt.executeUpdate(sql);
-			System.out.println("Insertion correct");
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
+		if(QueryUpd(sql)){
+			System.out.println("Element inserted.");
+		}
 	}
 	
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertProfessor(Professor objs) {
-		try {
-			// Execute a query
-			System.out.println("Inserting records into the table...");
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "INSERT INTO professors(pFName, pLName, pEMail, pDept, pOffi) " + 
+	public static void insertProfessor(Professor objs) {
+		System.out.println("Inserting records into the table...");
+		String sql = "INSERT INTO papf_professors(pFName, pLName, pEMail, pDept, pOffi) " + 
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"', '"+objs.getEmail()+"', '"+objs.getDept()+"', "+objs.getOfficeNo()+")";
-				stmt.executeUpdate(sql);
-			System.out.println("Insertion correct");
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
+		if(QueryUpd(sql)){
+			System.out.println("Element inserted.");
+		}
 	}
 	
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertUniversity(University objs) {
-		try {
-			// Execute a query
-			System.out.println("Inserting records into the table...");
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "INSERT INTO universities( uAcronym, uName, uCity, uZipCode) " + 
+	public static void insertUniversity(University objs) {
+		System.out.println("Inserting records into the table...");
+		String sql = "INSERT INTO papf_universities( uAcronym, uName, uCity, uZipCode) " + 
 				"VALUES ('"+objs.getUniAcronym()+"','"+objs.getUniName()+"','"+objs.getUniCity()+"',"+objs.getUniZipCode()+",)";
-				stmt.executeUpdate(sql);
-			System.out.println("Insertion correct");
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
+		if(QueryUpd(sql)){
+			System.out.println("Element inserted.");
+		}
 	}
 	
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertCourse(Course objs) {
-		try {
-			// Execute a query
-			System.out.println("Inserting records into the table...");
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "INSERT INTO courses(cName, cCredits, cProf, cUni)"+ 
+	public static void insertCourse(Course objs) {
+		System.out.println("Inserting records into the table...");
+		String sql = "INSERT INTO papf_courses(cName, cCredits, cProf, cUni)"+ 
 				"VALUES ('"+objs.getcName()+"', "+objs.getnCredits()+", "+objs.getProf().getId()+", '"+objs.getUni().getUniAcronym()+"')";
-				stmt.executeUpdate(sql);
-			System.out.println("Insertion correct");
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
+		if(QueryUpd(sql)){
+			System.out.println("Element inserted.");
+		}
 	}	
 
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public void insertCourseStudents(int cID, int eID) {
-		try {
-			// Execute a query
-			System.out.println("Inserting records into the table...");
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "INSERT INTO courseStudents(cID, eID)"+ 
-				"VALUES ("+cID+", "+eID+")";
-				stmt.executeUpdate(sql);
-			System.out.println("Insertion correct");
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
+	public static void insertCourseStudents(int cID, int eID) {
+		System.out.println("Inserting records into the table...");
+		String sql = "INSERT INTO papf_courseStudents(cID, eID) VALUES ("+cID+", "+eID+")";
+		if(QueryUpd(sql)){
+			System.out.println("Element inserted.");
+		}
 	}	
 
 	
-	public University selectUniversity(String nombreUni) {
-		 ResultSet rs = null;
-		 University uAux = null;
+	public static University selectUniversity(String nombreUni) {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM papf_universities WHERE uAcronym = "+nombreUni+";";
+		rs = QueryResu(sql);
 		try {
-			// Execute a query
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "SELECT * FROM universities WHERE uAcronym = "+nombreUni+";";
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
-		 try {
-			rs.next();
-			uAux = new University(rs.getString(0),rs.getString(1),rs.getString(2),rs.getInt(3));
+			if(rs.next()){
+				return new University(rs.getString(0),rs.getString(1),rs.getString(2),rs.getInt(3));				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return uAux; 
+		 return null; 
 	}
 	
-	public Professor selectProfesor(int offN) {
-		 ResultSet rs = null;
-		 Professor pAux = null;
+	public static Professor selectProfessor(int offN) {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM papf_professors WHERE pOffi = "+offN+";";
+		rs = QueryResu(sql);		
 		try {
-			// Execute a query
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "SELECT * FROM professors WHERE pOffi = "+offN+";";
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
-		 try {
-			rs.next();
-			pAux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+			if(rs.next()){
+				return new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return pAux; 
+		return null; 
 	}
 	
-	public Professor selectProfesor2(int pID) {
-		 ResultSet rs = null;
-		 Professor pAux = null;
+	public static Professor selectProfessor2(int pID) {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM papf_professors WHERE pID = "+pID+";";
+		rs = QueryResu(sql);
 		try {
-			// Execute a query
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "SELECT * FROM professors WHERE pID = "+pID+";";
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
-		 try {
-			rs.next();
-			pAux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+			if(rs.next()){
+				return new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return pAux; 
+		return null; 
 	}
 	
-	public Student selectStudent(String lName) {
-		 ResultSet rs = null;
-		 Student sAux = null;
+	public static Student selectStudent(String lName) {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM papf_students WHERE eLName = "+lName+";";
+		rs = QueryResu(sql);
 		try {
-			// Execute a query
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "SELECT * FROM students WHERE eLName = "+lName+";";
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
-		 try {
-			rs.next();
-			sAux = new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));
+			if(rs.next()){
+				return new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return sAux; 
+		return null; 
 	}
 	
-	public Course selectCourse(String cName) {
-		 ResultSet rs = null;
-		 Course cAux = null;
+	public static Course selectCourse(String cName) {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM papf_courses WHERE eLName = "+cName+";";
+		rs = QueryResu(sql);
 		try {
-			// Execute a query
-			Statement stmt = DB.con.createStatement();
-			String sql = null;
-					  
-			// Include all object data to the database table
-			sql = "SELECT * FROM courses WHERE eLName = "+cName+";";
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException se) { se.printStackTrace();  }
-		 try {
-			rs.next();
-			cAux = new Course(rs.getString(0),rs.getInt(1),selectProfesor2(rs.getInt(2)),selectUniversity(rs.getString(3))); // Sacar los estudiantes del curso
+			if(rs.next()){
+				return new Course(rs.getString(0),rs.getInt(1),selectProfessor2(rs.getInt(2)),selectUniversity(rs.getString(3))); // Sacar los estudiantes del curso				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return cAux; 
+		return null; 
 	}
 	
 	/**
@@ -250,19 +171,11 @@ public class DaoModel {
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveStudentInfo() {//always close out of your connections 
-		 ResultSet rs = null;
-		 try {
-			Statement stmt = DB.con.createStatement();
-			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM students";
-			System.out.println("Records are now retrieved");
-			
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		 return rs;
+		System.out.println("Retrieving Records...");
+		String sql = "SELECT * FROM papf_students";
+		System.out.println("Records are now retrieved");
+		
+		return QueryResu(sql);
 	}
 	
 	/**
@@ -270,19 +183,11 @@ public class DaoModel {
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveProfessorInfo() {//always close out of your connections 
-		 ResultSet rs = null;
-		 try {
-			Statement stmt = DB.con.createStatement();
-			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM professors";
-			System.out.println("Records are now retrieved");
-			
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		 return rs;
+		System.out.println("Retrieving Records...");
+		String sql = "SELECT * FROM papf_professors";
+		System.out.println("Records are now retrieved");
+		
+		return QueryResu(sql);
 	}
 	
 	/**
@@ -290,19 +195,11 @@ public class DaoModel {
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveUniversityInfo() {//always close out of your connections 
-		 ResultSet rs = null;
-		 try {
-			Statement stmt = DB.con.createStatement();
-			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM universities";
-			System.out.println("Records are now retrieved");
+		 System.out.println("Retrieving Records...");
+		 String sql = "SELECT * FROM papf_universities";
+		 System.out.println("Records are now retrieved");
 			
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		 return rs;
+		 return QueryResu(sql);
 	}
 	
 	/**
@@ -310,19 +207,11 @@ public class DaoModel {
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveCourseInfo() {//always close out of your connections 
-		 ResultSet rs = null;
-		 try {
-			Statement stmt = DB.con.createStatement();
-			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM courses";
-			System.out.println("Records are now retrieved");
+		 System.out.println("Retrieving Records...");
+		 String sql = "SELECT * FROM papf_courses";
+		 System.out.println("Records are now retrieved");
 			
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		 return rs;
+		 return QueryResu(sql);
 	}
 	
 	/**
@@ -330,27 +219,20 @@ public class DaoModel {
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveCourseStudentInfo() {//always close out of your connections 
-		 ResultSet rs = null;
-		 try {
-			Statement stmt = DB.con.createStatement();
-			System.out.println("Retrieving Records...");
-			String sql = "SELECT * FROM courseStudents";
-			System.out.println("Records are now retrieved");
+		 System.out.println("Retrieving Records...");
+		 String sql = "SELECT * FROM papf_courseStudents";
+		 System.out.println("Records are now retrieved");
 			
-			rs = stmt.executeQuery(sql);
-			DB.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		 return rs;
+		 return QueryResu(sql);
 	}
 	
-	public ResultSet QueryResu(String sentencia) {
+	public static ResultSet QueryResu(String sentencia) {
 		// querys que devuelven resultados
+		Connection con = DBConnect.getConnection();
 		try {
-			Statement stmt = DB.con.createStatement();
+			Statement stmt = con.createStatement();
 			ResultSet result = stmt.executeQuery(sentencia);
-			DB.con.close();
+			// con.close();
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -358,13 +240,14 @@ public class DaoModel {
 		}
 	}
 	
-	public boolean QueryUpd(String sentencia) {
+	public static boolean QueryUpd(String sentencia) {
 		// querys que no devuelven resultados
+		Connection con = DBConnect.getConnection();
 		try {
-			Statement stmt = DB.con.createStatement();
+			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sentencia);
 			stmt.close();
-			DB.con.close();
+			con.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -377,7 +260,7 @@ public class DaoModel {
 		ResultSet rs = null;
 		AcademicMember AMaux = null;
 		
-		rs = QueryResu("SELECT * FROM students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
+		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
 				AMaux = new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));				
@@ -388,7 +271,7 @@ public class DaoModel {
 		}
 		
 		if(AMaux == null){
-			rs = QueryResu("SELECT * FROM profesor WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
+			rs = QueryResu("SELECT * FROM papf_professor WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
 			try {
 				if(rs.next()){
 					AMaux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				

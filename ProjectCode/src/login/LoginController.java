@@ -11,15 +11,16 @@ public class LoginController {
 	@FXML private TextField user;
 	@FXML private TextField password;
 	@FXML private Button loginButton;
-	DaoModel DB;
+	public static AcademicMember AClog = null;
+	public DaoModel DB;
 
 	// public void initialize() {}
 
 	public void initManager() {
 		DB = new DaoModel();
-		AcademicMember AClog = authorize();
+		AClog = authorize();
 		if (AClog != null){
-			authenticated(AClog);			
+			authenticated();			
 		}
 	}
 
@@ -44,11 +45,12 @@ public class LoginController {
 	 * Callback method invoked to notify that a user has been authenticated. Will
 	 * show the main application screen.
 	 */
-	public void authenticated(AcademicMember aClog) {
-		System.out.println("User " + aClog.getFirstName() + " has been registered, proproceding to user page.");
+	public void authenticated() {
+		System.out.println("User " + AClog.getFirstName() + " has been registered, proproceding to user page.");
 		//showMainView(sessionID);
-		if(aClog.getEmail().contentEquals("hawk.iit.edu")){
+		if(AClog.getEmail().contentEquals("hawk.iit.edu")){
 			System.out.println("go to student page");
+			StartPage.changeToStd();
 		} else {
 			System.out.println("go to prof page");
 		}
