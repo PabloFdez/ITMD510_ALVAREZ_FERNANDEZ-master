@@ -58,6 +58,8 @@ public class DBCreate {
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";
 			
+			HOla Javi que tal
+			
 			DaoModel.QueryUpd(sql);
 			DaoModel.QueryUpd(sql1);
 			DaoModel.QueryUpd(sql2);
