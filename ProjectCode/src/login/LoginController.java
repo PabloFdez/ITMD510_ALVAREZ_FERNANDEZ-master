@@ -48,7 +48,7 @@ public class LoginController {
 	public void authenticated() {
 		System.out.println("User " + AClog.getFirstName() + " has been registered, proproceding to user page.");
 		//showMainView(sessionID);
-		if(AClog.getEmail().contentEquals("hawk.iit.edu")){
+		if(AClog.getEmail().contains("hawk.iit.edu")){
 			System.out.println("go to student page");
 			StartPage.changeToStd();
 		} else {

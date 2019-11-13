@@ -45,8 +45,8 @@ public class DaoModel {
 	 */
 	public static void insertProfessor(Professor objs) {
 		System.out.println("Inserting records into the table...");
-		String sql = "INSERT INTO papf_professors(pFName, pLName, pEMail, pDept, pOffi) " + 
-				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"', '"+objs.getEmail()+"', '"+objs.getDept()+"', "+objs.getOfficeNo()+")";
+		String sql = "INSERT INTO papf_professors(pFName, pLName, pEMail,pPassword, pDept, pOffi) " + 
+				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"','', '"+objs.getDept()+"', "+objs.getOfficeNo()+")";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
 		}
@@ -59,7 +59,7 @@ public class DaoModel {
 	public static void insertUniversity(University objs) {
 		System.out.println("Inserting records into the table...");
 		String sql = "INSERT INTO papf_universities( uAcronym, uName, uCity, uZipCode) " + 
-				"VALUES ('"+objs.getUniAcronym()+"','"+objs.getUniName()+"','"+objs.getUniCity()+"',"+objs.getUniZipCode()+",)";
+				"VALUES ('"+objs.getUniAcronym()+"','"+objs.getUniName()+"','"+objs.getUniCity()+"',"+objs.getUniZipCode()+");";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
 		}
@@ -93,11 +93,11 @@ public class DaoModel {
 	
 	public static University selectUniversity(String nombreUni) {
 		ResultSet rs = null;
-		String sql = "SELECT * FROM papf_universities WHERE uAcronym = "+nombreUni+";";
+		String sql = "SELECT * FROM papf_universities WHERE uAcronym = '"+nombreUni+"';";
 		rs = QueryResu(sql);
 		try {
 			if(rs.next()){
-				return new University(rs.getString(0),rs.getString(1),rs.getString(2),rs.getInt(3));				
+				return new University(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,7 +112,7 @@ public class DaoModel {
 		rs = QueryResu(sql);		
 		try {
 			if(rs.next()){
-				return new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+				return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -127,7 +127,7 @@ public class DaoModel {
 		rs = QueryResu(sql);
 		try {
 			if(rs.next()){
-				return new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
+				return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -138,11 +138,11 @@ public class DaoModel {
 	
 	public static Student selectStudent(String lName) {
 		ResultSet rs = null;
-		String sql = "SELECT * FROM papf_students WHERE eLName = "+lName+";";
+		String sql = "SELECT * FROM papf_students WHERE eLName = '"+lName+"';";
 		rs = QueryResu(sql);
 		try {
 			if(rs.next()){
-				return new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));				
+				return new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,11 +153,11 @@ public class DaoModel {
 	
 	public static Course selectCourse(String cName) {
 		ResultSet rs = null;
-		String sql = "SELECT * FROM papf_courses WHERE eLName = "+cName+";";
+		String sql = "SELECT * FROM papf_courses WHERE cName = '"+cName+"';";
 		rs = QueryResu(sql);
 		try {
 			if(rs.next()){
-				return new Course(rs.getString(0),rs.getInt(1),selectProfessor2(rs.getInt(2)),selectUniversity(rs.getString(3))); // Sacar los estudiantes del curso				
+				return new Course(rs.getInt(1),rs.getString(2),rs.getInt(3),selectProfessor2(rs.getInt(4)),selectUniversity(rs.getString(5))); // Sacar los estudiantes del curso				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -263,7 +263,7 @@ public class DaoModel {
 		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
-				AMaux = new Student(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3));				
+				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -274,7 +274,7 @@ public class DaoModel {
 			rs = QueryResu("SELECT * FROM papf_professor WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
 			try {
 				if(rs.next()){
-					AMaux = new Professor(rs.getString(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
+					AMaux = new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));				
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

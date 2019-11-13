@@ -10,6 +10,12 @@ public class Professor extends AcademicMember{
 		department = dept;
 		officeNo = offNo;
 	}
+	
+	public Professor(int id, String fName, String lName, String eM, String dept, int offNo) {
+		super(id, fName, lName, eM, "@iit.edu");
+		department = dept;
+		officeNo = offNo;
+	}
 
 	@Override
 	public void getMemberInfo() {

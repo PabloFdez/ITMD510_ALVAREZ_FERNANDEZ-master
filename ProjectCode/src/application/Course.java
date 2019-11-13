@@ -14,6 +14,14 @@ public class Course {
 		prof = pro;
 		uni = university;
 	}
+	
+	public Course(int i_d, String name, int credits, Professor pro, University university) {
+		cID = i_d;
+		cName = name;
+		nCredits = credits;
+		prof = pro;
+		uni = university;
+	}
 
 	/**
 	 * @return the cName

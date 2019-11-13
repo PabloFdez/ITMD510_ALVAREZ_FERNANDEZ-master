@@ -1,7 +1,6 @@
 package application;
 
 public class University {
-	int uID;
 	String uAcronym;
 	String uName;
 	String uCity;
@@ -13,21 +12,7 @@ public class University {
 		this.uCity = city;
 		this.uZipCode = zipCode;
 	}
-
-	/**
-	 * @return the uniID
-	 */
-	public int getUniID() {
-		return uID;
-	}
-
-	/**
-	 * @param uniID the uniID to set
-	 */
-	public void setUniID(int uID) {
-		this.uID = uID;
-	}
-
+	
 	/**
 	 * @return the uniAcronym
 	 */

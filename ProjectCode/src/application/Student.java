@@ -11,6 +11,12 @@ public class Student extends AcademicMember{
 		major = maj;
 		gpa = 0;
 	}
+	
+	public Student(int id, String fName, String lName, String eM, String maj) {
+		super(id, fName, lName, eM, "@hawk.iit.edu");
+		major = maj;
+		gpa = 0;
+	}
 
 
 	@Override

@@ -24,7 +24,7 @@ public class DBCreate {
 			DatabaseMetaData dbm = DBConnect.getConnection().getMetaData();
 			// check if "p_alva_tab" table is there
 			System.out.println("Checking previous creation...");
-			ResultSet looktable = dbm.getTables(null, null, "papf_courses", null);
+			ResultSet looktable = dbm.getTables(null, null, "papf_courseStudents", null);
 			if (looktable.next()) {
 				// Table exists
 				check = true;
@@ -46,21 +46,20 @@ public class DBCreate {
 			String sql1 = "CREATE TABLE papf_professors" + "(pID INTEGER not NULL AUTO_INCREMENT, "
 			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pPassword VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
 			
-			String sql2 = "CREATE TABLE papf_universities" + "(uAcronym VARCHAR(10), " + " uName VARCHAR(30), " + " uCity VARCHAR(20), " + " uZipCode INTEGER, " + " PRIMARY KEY ( uAcronym ));";
+			String sql2 = "CREATE TABLE papf_universities" + "(uAcronym VARCHAR(10), " + " uName VARCHAR(50), " + " uCity VARCHAR(20), " + " uZipCode INTEGER, " + " PRIMARY KEY ( uAcronym ));";
 			
 			String sql3 = "CREATE TABLE papf_courses" + "(cID INTEGER not NULL AUTO_INCREMENT, "
 			+" cName VARCHAR(30), " + " cCredits INTEGER, " + " cProf INTEGER, " + " cUni VARCHAR(10), " + "CONSTRAINT PK_couses PRIMARY KEY ( cID ),"+
-			//"CONSTRAINT FK_Prof FOREIGN KEY (cProf) REFERENCES professors(pID),"+
-			//"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES universities(uID));";
-			");";
+			"CONSTRAINT FK_Prof FOREIGN KEY (cProf) REFERENCES papf_professors(pID),"+
+			"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES papf_universities(uAcronym));";
 			
-			String sql4 = "CREATE TABLE papf_courseStudents (cID INTGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
-			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES courses(cID),"+
-			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES students(eID));";
+			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
+			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
+			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";
 			
-			//DaoModel.QueryUpd(sql);
-			//DaoModel.QueryUpd(sql1);
-			//DaoModel.QueryUpd(sql2);
+			DaoModel.QueryUpd(sql);
+			DaoModel.QueryUpd(sql1);
+			DaoModel.QueryUpd(sql2);
 			DaoModel.QueryUpd(sql3);
 			DaoModel.QueryUpd(sql4);
 			
@@ -105,11 +104,11 @@ public class DBCreate {
 		DaoModel.insertStudent(s5);
 		
 		// Insert Passwords
-		DaoModel.QueryResu(sql);
-		DaoModel.QueryResu(sql2);
-		DaoModel.QueryResu(sql3);
-		DaoModel.QueryResu(sql4);
-		DaoModel.QueryResu(sql5);
+		DaoModel.QueryUpd(sql);
+		DaoModel.QueryUpd(sql2);
+		DaoModel.QueryUpd(sql3);
+		DaoModel.QueryUpd(sql4);
+		DaoModel.QueryUpd(sql5);
 		System.out.println("Insertion completed");
 	}
 	
@@ -127,11 +126,11 @@ public class DBCreate {
 		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek","ITM",207);
 		
 		// Update Passwords
-		String sql = "Update papf_professors SET ePassword = 'pass'  WHERE eEMail = 'lpapademas@iit.edu';";
-		String sql2 = "Update papf_professors SET ePassword = 'pass'  WHERE eEMail = 'jpapademas@iit.edu';";
-		String sql3 = "Update papf_professors SET ePassword = 'pass'  WHERE eEMail = 'dmo@iit.edu';";
-		String sql4 = "Update papf_professors SET ePassword = 'pass'  WHERE eEMail = 'rrao@iit.edu';";
-		String sql5 = "Update papf_professors SET ePassword = 'pass'  WHERE eEMail = 'jhajek@iit.edu';";
+		String sql = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'lpapademas@iit.edu';";
+		String sql2 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'jpapademas@iit.edu';";
+		String sql3 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'dmo@iit.edu';";
+		String sql4 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'rrao@iit.edu';";
+		String sql5 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'jhajek@iit.edu';";
 		
 		DaoModel.insertProfessor(p1);
 		DaoModel.insertProfessor(p2);
@@ -140,11 +139,11 @@ public class DBCreate {
 		DaoModel.insertProfessor(p5);
 		
 		// Insert Passwords
-		DaoModel.QueryResu(sql);
-		DaoModel.QueryResu(sql2);
-		DaoModel.QueryResu(sql3);
-		DaoModel.QueryResu(sql4);
-		DaoModel.QueryResu(sql5);
+		DaoModel.QueryUpd(sql);
+		DaoModel.QueryUpd(sql2);
+		DaoModel.QueryUpd(sql3);
+		DaoModel.QueryUpd(sql4);
+		DaoModel.QueryUpd(sql5);
 		System.out.println("Insertion completed");
 	}
 	
