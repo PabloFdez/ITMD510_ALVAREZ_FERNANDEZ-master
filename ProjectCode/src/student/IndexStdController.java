@@ -1,4 +1,4 @@
-package professor;
+package student;
 
 import java.io.IOException;
 
@@ -12,16 +12,16 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.ToolKit;
 
-public class IndexProfController extends Application {
+public class IndexStdController extends Application {
 	@FXML
 	private Pane ChangingPane;
 	
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("IndexProf.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("IndexStd.fxml"));
 			Scene scene = new Scene(root,640, 480);
-			secondaryStage.setTitle("Professor Site");
+			secondaryStage.setTitle("Student Site");
 			secondaryStage.setScene(scene);
 			secondaryStage.setMaximized(true);
 			secondaryStage.show();
@@ -40,11 +40,11 @@ public class IndexProfController extends Application {
 		}
 	}
 	
-	public void ChangingPaneProfArea(){
+	public void ChangingPaneStudentArea(){
 		setChangingPane("DataPane.fxml");
 	}
 	
-	public void ChangingPaneSetGrade(){
+	public void ChangingPaneCourses(){
 		setChangingPane("DataPane.fxml");
 	}
 	
@@ -67,4 +67,5 @@ public class IndexProfController extends Application {
 	public void TKAboutUs(){
 		ToolKit.TKAboutUs();
 	}
+	
 }

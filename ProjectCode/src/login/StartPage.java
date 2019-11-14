@@ -16,7 +16,7 @@ public class StartPage  extends Application {
 	public void start(Stage primaryStage) {
 		GeneralStage = primaryStage;
 		try {
-			new DaoModel();
+			DaoModel.createTables();
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root,400,400);
 			primaryStage.setScene(scene);
@@ -28,6 +28,10 @@ public class StartPage  extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void relaunch() {
+		start(GeneralStage);
 	}
 
 	public static void changeToStd() {

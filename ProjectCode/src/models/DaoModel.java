@@ -17,12 +17,17 @@ import application.*;
 public class DaoModel {
 	//static Connection con = null;
 	//static DaoModel DB = null;
-
+	//private boolean created = false;
+	
 	/**
 	 * constructor
 	 * @return 
 	 */
 	public DaoModel() { // create db object instance
+		//if(!created) new DBCreate(); created = true;
+	}
+	
+	public static void createTables(){
 		new DBCreate();
 	}
 		
@@ -271,7 +276,7 @@ public class DaoModel {
 		}
 		
 		if(AMaux == null){
-			rs = QueryResu("SELECT * FROM papf_professor WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
+			rs = QueryResu("SELECT * FROM papf_professors WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
 			try {
 				if(rs.next()){
 					AMaux = new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));				
