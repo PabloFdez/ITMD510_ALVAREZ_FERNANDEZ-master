@@ -11,6 +11,7 @@ public class LoginController {
 	@FXML private TextField user;
 	@FXML private TextField password;
 	@FXML private Button loginButton;
+	@FXML private Button registerButton;
 	public static AcademicMember AClog = null;
 	public DaoModel DB;
 
@@ -53,6 +54,7 @@ public class LoginController {
 			StartPage.changeToStd();
 		} else {
 			System.out.println("go to prof page");
+			StartPage.changeToProf();
 		}
 	}
 

@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="ChangingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="professor.DataController">
    <children>
-      <Button layoutX="503.0" layoutY="519.0" mnemonicParsing="false" onAction="#SaveEdit" text="Guardar" />
+      <Button layoutX="806.0" layoutY="252.0" mnemonicParsing="false" onAction="#SaveEdit" prefHeight="99.0" prefWidth="216.0" text="Guardar" />
       <GridPane layoutX="34.0" layoutY="34.0" prefHeight="536.0" prefWidth="382.0">
          <children>
             <Label text="First Name" />

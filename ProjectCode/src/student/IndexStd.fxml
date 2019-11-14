@@ -37,7 +37,7 @@
                   <Image url="@../../pics/student.png" />
                </image>
             </ImageView>
-            <Button onAction="#ChangingPanePersonalArea" prefHeight="57.0" prefWidth="152.0" text="Student Information">
+            <Button onAction="#ChangingPaneStudentArea" prefHeight="57.0" prefWidth="152.0" text="Student Information">
                <font>
                   <Font size="12.0" />
                </font>

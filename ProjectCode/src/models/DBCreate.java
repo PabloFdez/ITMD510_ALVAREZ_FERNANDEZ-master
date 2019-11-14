@@ -9,6 +9,7 @@ import application.*;
 public class DBCreate {
 	//Connection con = null;
 	//DaoModel DB;
+	//private boolean created = false;
 	
 	DBCreate() {
 		//con = DaoModel.con;
@@ -19,7 +20,7 @@ public class DBCreate {
 	 * @return if "p_alva_tab" table is there
 	 */
 	public boolean checkcreation(){
-		boolean check = false;
+		boolean created = false;
 		try{
 			DatabaseMetaData dbm = DBConnect.getConnection().getMetaData();
 			// check if "p_alva_tab" table is there
@@ -27,13 +28,13 @@ public class DBCreate {
 			ResultSet looktable = dbm.getTables(null, null, "papf_courseStudents", null);
 			if (looktable.next()) {
 				// Table exists
-				check = true;
+				created = true;
 				System.out.println("Database was previously created");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return check;
+		return created;
 	}
 	
 	/**

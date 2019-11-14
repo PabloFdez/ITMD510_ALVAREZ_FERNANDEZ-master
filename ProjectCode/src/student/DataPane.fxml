@@ -33,6 +33,6 @@
             <Label fx:id="gpa" prefHeight="35.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button layoutX="749.0" layoutY="319.0" mnemonicParsing="false" onAction="#EditUserData" prefHeight="94.0" prefWidth="174.0" text="Editar" />
+      <Button layoutX="749.0" layoutY="319.0" mnemonicParsing="false" onAction="#EditUserData" prefHeight="94.0" prefWidth="174.0" text="Edit" />
    </children>
 </Pane>

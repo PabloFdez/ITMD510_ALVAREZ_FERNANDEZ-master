@@ -73,7 +73,7 @@ public class DataController implements Initializable{
 	}
 
 	public static boolean isNumeric(String str) {
-		return (str.matches("[+-]?\\d*(\\d+)?") && str.equals("") == false);
+		return (str.matches("[+-]?\\d*(\\d+)?") || str.equals(""));
 	}
 
 	public void BackUpGeneral() {

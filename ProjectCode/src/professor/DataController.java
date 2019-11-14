@@ -60,6 +60,7 @@ public class DataController implements Initializable{
 
 	public void SaveEdit() {
 		// mandar datos correctos a la bbdd
+		int len = TfName.getText().length();
 		if (TfName.getText().length() <= 0
 				|| isNumeric(Toffice.getText())) {
 			Alert dialogoAlerta = new Alert(AlertType.WARNING);
@@ -74,7 +75,7 @@ public class DataController implements Initializable{
 	}
 
 	public static boolean isNumeric(String str) {
-		return str.equals("") == false; //(str.matches("[+-]?\\d*(\\d+)?") &&    )
+		return str.equals(""); //(str.matches("[+-]?\\d*(\\d+)?") &&    )
 	}
 
 	public void BackUpGeneral() {

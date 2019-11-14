@@ -40,7 +40,7 @@ public class IndexStdController extends Application {
 		}
 	}
 	
-	public void ChangingPanePersonalArea(){
+	public void ChangingPaneStudentArea(){
 		setChangingPane("DataPane.fxml");
 	}
 	
