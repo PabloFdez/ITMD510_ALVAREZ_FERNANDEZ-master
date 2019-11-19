@@ -34,11 +34,7 @@ public class DataController implements Initializable{
 	@FXML
 	private TextField TlName;
 	@FXML
-	private TextField Temail;
-	@FXML
 	private TextField Tmajor;
-	@FXML
-	private TextField Tgpa;
 	@FXML
 	private Button BUboton;
 	
@@ -59,8 +55,7 @@ public class DataController implements Initializable{
 
 	public void SaveEdit() {
 		// mandar datos correctos a la bbdd
-		if (TfName.getText().length() <= 0
-				|| isNumeric(Tgpa.getText())) {
+		if (TfName.getText().length() <= 0) {
 			Alert dialogoAlerta = new Alert(AlertType.WARNING);
 			dialogoAlerta.setTitle("Warning");
 			dialogoAlerta.setHeaderText("Save error");
@@ -91,9 +86,7 @@ public class DataController implements Initializable{
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(user.getFirstName());
 			TlName.setText(user.getLastName());
-			Temail.setText(user.getEmail());
 			Tmajor.setText(user.getMajor());
-			Tgpa.setText(Double.toString(user.getGpa()));
 		}
 	}
 }
