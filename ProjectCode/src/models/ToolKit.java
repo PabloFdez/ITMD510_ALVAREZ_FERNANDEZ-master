@@ -9,18 +9,18 @@ import javafx.stage.Stage;
 import login.StartPage;
 
 public class ToolKit {	
-	public void newWindow(String PanelNuevo) {
+	public void newWindow(String newPanel) {
 		//application.Login.LOGGER.log(Level.INFO, PanelNuevo);
 		AnchorPane root = null;
 		try {
-			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/ventanaAyuda/"+ PanelNuevo));
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/help/"+ newPanel));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		Stage secondaryStage = new Stage();
-		Scene scene = new Scene(root, 640, 480);
+		Scene scene = new Scene(root);
 		secondaryStage.setResizable(false);
-		secondaryStage.setTitle("Help");
+		secondaryStage.setTitle(newPanel.substring(0, newPanel.length()-5));
 		secondaryStage.setScene(scene);
 		secondaryStage.show();
 	}
@@ -37,15 +37,22 @@ public class ToolKit {
 		m.relaunch();
 	}
 
-	public static void TKHelp() {
+	public void TKHelp() {
 		//general help
+		newWindow("GeneralHelp.fxml");
 	}
 
-	public static void TKSpecificHelp(String path) {
-
+	public void TKSpecificHelp() {
+		if(login.LoginController.AClog.getMemberType()) {
+			//help prof
+			newWindow("ProfessorHelp.fxml");
+		} else {
+			//help std
+			newWindow("StudentHelp.fxml");
+		}
 	}
 
-	public static void TKAboutUs() {
-
+	public void TKAboutUs() {
+		newWindow("AboutUs.fxml");
 	}
 }
