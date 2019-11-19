@@ -13,8 +13,8 @@
          <children>
             <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label prefHeight="65.0" prefWidth="181.0" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="user" prefHeight="16.0" prefWidth="228.0" promptText="Use &quot;open&quot; to login" text="open" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <TextField fx:id="password" prefHeight="17.0" prefWidth="228.0" promptText="Use &quot;sesame&quot; to login" text="sesame" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="user" prefHeight="16.0" prefWidth="228.0" promptText="Use &quot;open&quot; to login" text="palvarezfernandez@hawk.iit.edu" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="password" prefHeight="17.0" prefWidth="228.0" promptText="Use &quot;sesame&quot; to login" text="pass" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="109.0" />
@@ -29,7 +29,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="254.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Login" />
+            <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="223.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Register" />
+            <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="47.0" layoutY="29.0" mnemonicParsing="false" onAction="#initManager" text="Login" />
          </children>
       </AnchorPane>
    </center>
