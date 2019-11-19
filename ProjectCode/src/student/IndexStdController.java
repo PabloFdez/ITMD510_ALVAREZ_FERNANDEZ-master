@@ -57,7 +57,7 @@ public class IndexStdController extends Application {
 	}
 	
 	public void TKSpecificHelp(){
-		ToolKit.TKSpecificHelp();
+		new ToolKit().TKSpecificHelp();
 	}
 	
 	public void TKAboutUs(){

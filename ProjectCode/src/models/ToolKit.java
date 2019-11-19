@@ -37,17 +37,19 @@ public class ToolKit {
 		m.relaunch();
 	}
 
-	public static void TKHelp() {
+	public void TKHelp() {
 		//general help
-		
+		newWindow("GeneralHelp.fxml");
 	}
 
-	public static void TKSpecificHelp() {
+	public void TKSpecificHelp() {
 		if(login.LoginController.AClog.getMemberType()) {
 			//help std
+			newWindow("StudentHelp.fxml");
 			
 		} else {
 			//help prof
+			newWindow("ProfessorHelp.fxml");
 		}
 	}
 
