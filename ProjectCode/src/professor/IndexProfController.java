@@ -65,6 +65,6 @@ public class IndexProfController extends Application {
 	}
 	
 	public void TKAboutUs(){
-		ToolKit.TKAboutUs();
+		new ToolKit().TKAboutUs();
 	}
 }
