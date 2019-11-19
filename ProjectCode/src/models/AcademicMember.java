@@ -21,6 +21,15 @@ public abstract class AcademicMember implements Member {
 		user = us;
 		email = us + eM;
 	}
+	
+	@Override
+	public boolean getMemberType() {
+		// TODO Auto-generated method stub
+		if(this.getEmail().contains("hawk.iit.edu")) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * @return the firstName

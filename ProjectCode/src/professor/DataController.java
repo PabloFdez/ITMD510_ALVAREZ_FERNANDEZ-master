@@ -60,7 +60,6 @@ public class DataController implements Initializable{
 
 	public void SaveEdit() {
 		// mandar datos correctos a la bbdd
-		int len = TfName.getText().length();
 		if (TfName.getText().length() <= 0
 				|| isNumeric(Toffice.getText())) {
 			Alert dialogoAlerta = new Alert(AlertType.WARNING);

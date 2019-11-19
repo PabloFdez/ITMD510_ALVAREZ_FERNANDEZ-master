@@ -39,10 +39,15 @@ public class ToolKit {
 
 	public static void TKHelp() {
 		//general help
+		
 	}
 
-	public static void TKSpecificHelp(String path) {
-
+	public static void TKSpecificHelp() {
+		if(login.LoginController.AClog.getMemberType()) {
+			//help std
+		} else {
+			//help prof
+		}
 	}
 
 	public static void TKAboutUs() {

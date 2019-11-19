@@ -61,7 +61,7 @@ public class IndexProfController extends Application {
 	}
 	
 	public void TKSpecificHelp(){
-		ToolKit.TKSpecificHelp("");
+		ToolKit.TKSpecificHelp();
 	}
 	
 	public void TKAboutUs(){

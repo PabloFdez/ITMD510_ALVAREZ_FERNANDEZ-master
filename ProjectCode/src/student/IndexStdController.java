@@ -56,12 +56,8 @@ public class IndexStdController extends Application {
 		ToolKit.TKSession();
 	}
 	
-	public void TKHelp() {
-		ToolKit.TKHelp();
-	}
-	
 	public void TKSpecificHelp(){
-		ToolKit.TKSpecificHelp("");
+		ToolKit.TKSpecificHelp();
 	}
 	
 	public void TKAboutUs(){
