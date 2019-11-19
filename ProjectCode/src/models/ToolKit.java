@@ -20,7 +20,7 @@ public class ToolKit {
 		Stage secondaryStage = new Stage();
 		Scene scene = new Scene(root);
 		secondaryStage.setResizable(false);
-		secondaryStage.setTitle("Help");
+		secondaryStage.setTitle(newPanel.substring(0, newPanel.length()-5));
 		secondaryStage.setScene(scene);
 		secondaryStage.show();
 	}
@@ -44,12 +44,11 @@ public class ToolKit {
 
 	public void TKSpecificHelp() {
 		if(login.LoginController.AClog.getMemberType()) {
-			//help std
-			newWindow("StudentHelp.fxml");
-			
-		} else {
 			//help prof
 			newWindow("ProfessorHelp.fxml");
+		} else {
+			//help std
+			newWindow("StudentHelp.fxml");
 		}
 	}
 
