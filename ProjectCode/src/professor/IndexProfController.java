@@ -57,14 +57,15 @@ public class IndexProfController extends Application {
 	}
 	
 	public void TKHelp() {
-		new ToolKit().TKHelp();
+		ToolKit.TKHelp();
 	}
 	
 	public void TKSpecificHelp(){
-		new ToolKit().TKSpecificHelp();
+		ToolKit.TKSpecificHelp();
 	}
 	
 	public void TKAboutUs(){
-		new ToolKit().TKAboutUs();
+		ToolKit.TKAboutUs();
 	}
 }
+

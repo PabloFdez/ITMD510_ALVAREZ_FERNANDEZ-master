@@ -35,8 +35,6 @@ public class DataController implements Initializable{
 	@FXML
 	private TextField TlName;
 	@FXML
-	private TextField Temail;
-	@FXML
 	private TextField Tdepartment;
 	@FXML
 	private TextField Toffice;
@@ -92,9 +90,9 @@ public class DataController implements Initializable{
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(professor.getFirstName());
 			TlName.setText(professor.getLastName());
-			Temail.setText(professor.getEmail());
 			Tdepartment.setText(professor.getDept());
 			Toffice.setText(Integer.toString(professor.getOfficeNo()));
 		}
 	}
 }
+
