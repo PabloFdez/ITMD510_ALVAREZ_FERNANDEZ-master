@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1">
    <children>
-      <SplitPane dividerPositions="0.21212121212121213" orientation="VERTICAL" prefHeight="287.0" prefWidth="482.0">
+      <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="287.0" prefWidth="482.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1.0" prefWidth="193.0">
                <children>

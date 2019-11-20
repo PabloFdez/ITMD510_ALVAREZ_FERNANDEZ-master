@@ -4,14 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.AcademicMember;
 import models.DaoModel;
+import models.ToolKit;
 
 /** Controls the login screen */
 public class LoginController {
 
 	@FXML private TextField user;
 	@FXML private TextField password;
-	@FXML private Button loginButton;
-	@FXML private Button registerButton;
 	public static AcademicMember AClog = null;
 	public DaoModel DB;
 
@@ -56,6 +55,14 @@ public class LoginController {
 			System.out.println("go to prof page");
 			StartPage.changeToProf();
 		}
+	}
+	
+	public void initRegManager() {
+		StartPage.launch();
+	}
+	
+	public void initHelp() {
+		new ToolKit().TKHelp();
 	}
 
 	/**

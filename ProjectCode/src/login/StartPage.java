@@ -3,7 +3,7 @@ package login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.DaoModel;
 import professor.IndexProfController;
@@ -17,8 +17,8 @@ public class StartPage  extends Application {
 		GeneralStage = primaryStage;
 		try {
 			DaoModel.createTables();
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
-			Scene scene = new Scene(root,400,400);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
+			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
