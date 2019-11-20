@@ -12,3 +12,5 @@ To run the project go to "ITMD510_ALVAREZ_FERNANDEZ\ProjectCode\build\dist\" on 
 
 
 	java -jar .\ITMD510_ALVAREZ_FERNANDEZ.jar
+
+Or click on the .bat at the same folder. The .exe doesn't work.
