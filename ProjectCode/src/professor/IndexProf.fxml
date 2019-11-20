@@ -34,7 +34,7 @@
          <children>
             <ImageView fitHeight="143.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../pics/professor.jpg" />
+                  <Image url="file:./pics/professor.jpg" />
                </image>
             </ImageView>
             <Button onAction="#ChangingPaneProfArea" prefHeight="57.0" prefWidth="152.0" text="Professor information">

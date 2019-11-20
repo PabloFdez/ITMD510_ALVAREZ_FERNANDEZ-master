@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ITMD510_ALVAREZ_FERNANDEZ.jnlp">
+  <information>
+    <title>ITMD510_ALVAREZ_FERNANDEZ</title>
+    <vendor>PAPF</vendor>
+    <description>AcademicPanel_PAPF</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ITMD510_ALVAREZ_FERNANDEZ.jar" size="29966" download="eager" />
+    <jar href="libs\mysql-connector-java-5.1.38-bin.jar" size="983914" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="login.StartPage"  name="AcademicPanel_PAPF" />
+  <update check="background"/>
+</jnlp>
