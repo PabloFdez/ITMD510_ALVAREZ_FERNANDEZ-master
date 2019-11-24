@@ -147,7 +147,7 @@ public class DaoModel {
 		rs = QueryResu(sql);
 		try {
 			if(rs.next()){
-				return new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));				
+				return new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getString(6));				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -231,6 +231,17 @@ public class DaoModel {
 		 return QueryResu(sql);
 	}
 	
+	public static void updateStudent(int id, String fName, String lName, String major) {
+		 String sql = "UPDATE papf_students SET eFName='"+fName+"', eLName='"+lName+"', eMaj='"+major+"' WHERE eID="+id+";";
+		 QueryUpd(sql);
+	}
+	
+	public static void updateProfessor(int id, String fName, String lName, String department, int office) {
+		 String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
+		 QueryUpd(sql);
+	}
+
+	
 	public static ResultSet QueryResu(String sentencia) {
 		// querys que devuelven resultados
 		Connection con = DBConnect.getConnection();
@@ -268,7 +279,8 @@ public class DaoModel {
 		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
-				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));				
+				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));	
+				AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-13));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -279,7 +291,8 @@ public class DaoModel {
 			rs = QueryResu("SELECT * FROM papf_professors WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
 			try {
 				if(rs.next()){
-					AMaux = new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));				
+					AMaux = new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));
+					AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-8));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
