@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import models.DaoModel;
 
 public class DataController implements Initializable{
 	private Professor professor = (Professor) login.LoginController.AClog;
@@ -34,8 +35,6 @@ public class DataController implements Initializable{
 	private TextField TfName;
 	@FXML
 	private TextField TlName;
-	@FXML
-	private TextField Temail;
 	@FXML
 	private TextField Tdepartment;
 	@FXML
@@ -58,23 +57,31 @@ public class DataController implements Initializable{
 		setChangingPane("EditPane.fxml");
 	}
 
+	public static boolean isNumeric(String str) {
+		return str.matches("[+-]?\\d*(\\d+)?");
+	}
+
 	public void SaveEdit() {
 		// mandar datos correctos a la bbdd
-		if (TfName.getText().length() <= 0
-				|| isNumeric(Toffice.getText())) {
+
+		if ((TfName.getText().length() <= 0) || (TlName.getText().length() <= 0) || 
+				(Tdepartment.getText().length()) <= 0 || !isNumeric(Toffice.getText()) || Toffice.getText().length()<=0) {
 			Alert dialogoAlerta = new Alert(AlertType.WARNING);
 			dialogoAlerta.setTitle("Warning");
 			dialogoAlerta.setHeaderText("Save error");
 			dialogoAlerta.setContentText("Please review the data");
 			dialogoAlerta.showAndWait();
 		} else {
-			//DB.insertStudent(TfName.getText().....
+			// Updating DB
+			DaoModel.updateProfessor(professor.getId(), TfName.getText(), TlName.getText(), Tdepartment.getText(),Integer.parseInt(Toffice.getText()));
+			
+			// Updating App
+			professor.setFirstName(TfName.getText());
+			professor.setLastName(TlName.getText());
+			professor.setDept(Tdepartment.getText());
+			professor.setOfficeNo(Integer.parseInt(Toffice.getText()));
 			setChangingPane("DataPane.fxml");
 		}
-	}
-
-	public static boolean isNumeric(String str) {
-		return str.equals(""); //(str.matches("[+-]?\\d*(\\d+)?") &&    )
 	}
 
 	public void BackUpGeneral() {
@@ -92,7 +99,6 @@ public class DataController implements Initializable{
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(professor.getFirstName());
 			TlName.setText(professor.getLastName());
-			Temail.setText(professor.getEmail());
 			Tdepartment.setText(professor.getDept());
 			Toffice.setText(Integer.toString(professor.getOfficeNo()));
 		}

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import models.DaoModel;
 
 public class DataController implements Initializable{
 	private Student user = (Student) login.LoginController.AClog;
@@ -34,11 +35,7 @@ public class DataController implements Initializable{
 	@FXML
 	private TextField TlName;
 	@FXML
-	private TextField Temail;
-	@FXML
 	private TextField Tmajor;
-	@FXML
-	private TextField Tgpa;
 	@FXML
 	private Button BUboton;
 	
@@ -57,23 +54,30 @@ public class DataController implements Initializable{
 		setChangingPane("EditPane.fxml");
 	}
 
+	public static boolean isNumeric(String str) {
+		return str.matches("[+-]?\\d*(\\d+)?");
+	}
+
 	public void SaveEdit() {
 		// mandar datos correctos a la bbdd
-		if (TfName.getText().length() <= 0
-				|| isNumeric(Tgpa.getText())) {
+
+		if ((TfName.getText().length() <= 0) || (TlName.getText().length() <= 0) || 
+				(Tmajor.getText().length()) <= 0) {
 			Alert dialogoAlerta = new Alert(AlertType.WARNING);
 			dialogoAlerta.setTitle("Warning");
 			dialogoAlerta.setHeaderText("Save error");
 			dialogoAlerta.setContentText("Please review the data");
 			dialogoAlerta.showAndWait();
 		} else {
-			//DB.insertStudent(TfName.getText().....
+			// Updating DB
+			DaoModel.updateStudent(user.getId(), TfName.getText(), TlName.getText(), Tmajor.getText());
+			
+			// Updating App
+			user.setFirstName(TfName.getText());
+			user.setLastName(TlName.getText());
+			user.setMajor(Tmajor.getText());
 			setChangingPane("DataPane.fxml");
 		}
-	}
-
-	public static boolean isNumeric(String str) {
-		return (str.matches("[+-]?\\d*(\\d+)?") || str.equals(""));
 	}
 
 	public void BackUpGeneral() {
@@ -91,9 +95,7 @@ public class DataController implements Initializable{
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(user.getFirstName());
 			TlName.setText(user.getLastName());
-			Temail.setText(user.getEmail());
 			Tmajor.setText(user.getMajor());
-			Tgpa.setText(Double.toString(user.getGpa()));
 		}
 	}
 }
