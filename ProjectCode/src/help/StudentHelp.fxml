@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.21212121212121213" orientation="VERTICAL" prefHeight="287.0" prefWidth="482.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1.0" prefWidth="193.0">
                <children>
-                  <Label layoutX="10.0" layoutY="11.0" text="Professor Help">
+                  <Label layoutX="10.0" layoutY="11.0" text="Student Help">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
