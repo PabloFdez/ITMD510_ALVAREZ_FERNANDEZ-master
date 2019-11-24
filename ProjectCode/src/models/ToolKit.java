@@ -8,8 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import login.StartPage;
 
-public class ToolKit {	
-	public void newWindow(String newPanel) {
+public class ToolKit {
+	String newPanel="";
+	public void newWindow() {
 		//application.Login.LOGGER.log(Level.INFO, PanelNuevo);
 		AnchorPane root = null;
 		try {
@@ -39,20 +40,24 @@ public class ToolKit {
 
 	public void TKHelp() {
 		//general help
-		newWindow("GeneralHelp.fxml");
+		newPanel = "GeneralHelp.fxml";
+		newWindow();
 	}
 
 	public void TKSpecificHelp() {
 		if(login.LoginController.AClog.getMemberType()) {
-			//help prof
-			newWindow("ProfessorHelp.fxml");
-		} else {
 			//help std
-			newWindow("StudentHelp.fxml");
+			newPanel = "StudentHelp.fxml";
+			newWindow();
+		} else {
+			//help prof
+			newPanel = "ProfessorHelp.fxml";
+			newWindow();
 		}
 	}
 
 	public void TKAboutUs() {
-		newWindow("AboutUs.fxml");
+		newPanel = "AboutUs.fxml";
+		newWindow();
 	}
 }
