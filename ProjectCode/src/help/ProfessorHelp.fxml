@@ -90,7 +90,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="343.0" layoutY="437.0" prefHeight="30.0" prefWidth="281.0" text="or grade number not a number">
+                  <Label layoutX="343.0" layoutY="437.0" prefHeight="30.0" prefWidth="281.0" text="or grade not a number">
                      <font>
                         <Font size="20.0" />
                      </font>
