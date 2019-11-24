@@ -63,5 +63,4 @@ public class IndexStdController extends Application {
 	public void TKAboutUs(){
 		new ToolKit().TKAboutUs();
 	}
-	
 }
