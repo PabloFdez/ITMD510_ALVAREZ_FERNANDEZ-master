@@ -9,13 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ToolKit {
+public class ToolKitModel {
 	String newPanel="";
 	public void newWindow() {
 		//application.Login.LOGGER.log(Level.INFO, PanelNuevo);
 		AnchorPane root = null;
 		try {
-			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/help/"+ newPanel));
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/help/"+ newPanel));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

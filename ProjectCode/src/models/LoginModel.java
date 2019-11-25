@@ -1,5 +1,7 @@
 package models;
 
+import Dao.DaoModel;
+
 public class LoginModel {
 	/**
 	 * Check authorization credentials.

@@ -4,18 +4,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Dao.DaoModel;
 import application.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
-import models.DaoModel;
+import models.DataModel;
 
 public class DataProfController implements Initializable{
 	private Professor professor = (Professor) controllers.LoginController.AClog;
@@ -53,24 +52,18 @@ public class DataProfController implements Initializable{
 	}
 
 	public void EditUserData() {
-		// pasar a vantana editar
+		// go to edit panel
 		setChangingPane("../professor/EditPane.fxml");
 	}
 
-	public static boolean isNumeric(String str) {
-		return str.matches("[+-]?\\d*(\\d+)?");
-	}
+
 
 	public void SaveEdit() {
-		// mandar datos correctos a la bbdd
+		// send correct data to db
 
 		if ((TfName.getText().length() <= 0) || (TlName.getText().length() <= 0) || 
-				(Tdepartment.getText().length()) <= 0 || !isNumeric(Toffice.getText()) || Toffice.getText().length()<=0) {
-			Alert dialogoAlerta = new Alert(AlertType.WARNING);
-			dialogoAlerta.setTitle("Warning");
-			dialogoAlerta.setHeaderText("Save error");
-			dialogoAlerta.setContentText("Please review the data");
-			dialogoAlerta.showAndWait();
+				(Tdepartment.getText().length()) <= 0 || !DataModel.isNumeric(Toffice.getText()) || Toffice.getText().length()<=0) {
+			DataModel.sendAlert("Save error", "Please review the data");
 		} else {
 			// Updating DB
 			DaoModel.updateProfessor(professor.getId(), TfName.getText(), TlName.getText(), Tdepartment.getText(),Integer.parseInt(Toffice.getText()));

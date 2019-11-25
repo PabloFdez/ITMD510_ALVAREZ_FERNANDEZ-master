@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.ToolKit;
+import models.ToolKitModel;
 
 public class IndexStdController extends Application {
 	@FXML
@@ -50,18 +50,18 @@ public class IndexStdController extends Application {
 	}
 	
 	public void TKClose() {
-		ToolKit.TKClose();
+		ToolKitModel.TKClose();
 	}
 	
 	public void TKSession() {
-		ToolKit.TKSession();
+		ToolKitModel.TKSession();
 	}
 	
 	public void TKSpecificHelp(){
-		new ToolKit().TKSpecificHelp();
+		new ToolKitModel().TKSpecificHelp();
 	}
 	
 	public void TKAboutUs(){
-		new ToolKit().TKAboutUs();
+		new ToolKitModel().TKAboutUs();
 	}
 }

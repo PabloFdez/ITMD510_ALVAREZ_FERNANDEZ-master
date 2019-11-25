@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.AcademicMember;
 import models.LoginModel;
-import models.ToolKit;
+import models.ToolKitModel;
 
 /** Controls the login screen */
 public class LoginController {
@@ -42,6 +42,6 @@ public class LoginController {
 	}
 	
 	public void initHelp() {
-		new ToolKit().TKHelp();
+		new ToolKitModel().TKHelp();
 	}
 }
