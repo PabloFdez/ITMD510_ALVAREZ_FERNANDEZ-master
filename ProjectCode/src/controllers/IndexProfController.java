@@ -1,4 +1,4 @@
-package student;
+package controllers;
 
 import java.io.IOException;
 
@@ -12,16 +12,16 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.ToolKit;
 
-public class IndexStdController extends Application {
+public class IndexProfController extends Application {
 	@FXML
 	private Pane ChangingPane;
 	
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("IndexStd.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../professor/IndexProf.fxml"));
 			Scene scene = new Scene(root,640, 480);
-			secondaryStage.setTitle("Student Site");
+			secondaryStage.setTitle("Professor Site");
 			secondaryStage.setScene(scene);
 			secondaryStage.setMaximized(true);
 			secondaryStage.show();
@@ -40,12 +40,12 @@ public class IndexStdController extends Application {
 		}
 	}
 	
-	public void ChangingPaneStudentArea(){
-		setChangingPane("DataPane.fxml");
+	public void ChangingPaneProfArea(){
+		setChangingPane("../professor/DataPane.fxml");
 	}
 	
-	public void ChangingPaneCourses(){
-		setChangingPane("DataPane.fxml");
+	public void ChangingPaneSetGrade(){
+		setChangingPane("../professor/DataPane.fxml");
 	}
 	
 	public void TKClose() {
@@ -56,6 +56,10 @@ public class IndexStdController extends Application {
 		ToolKit.TKSession();
 	}
 	
+	public void TKHelp() {
+		new ToolKit().TKHelp();
+	}
+	
 	public void TKSpecificHelp(){
 		new ToolKit().TKSpecificHelp();
 	}
@@ -64,3 +68,4 @@ public class IndexStdController extends Application {
 		new ToolKit().TKAboutUs();
 	}
 }
+

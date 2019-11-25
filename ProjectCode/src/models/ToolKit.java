@@ -1,12 +1,13 @@
 package models;
 
 import java.io.IOException;
+
+import application.StartPage;
 //import java.util.logging.Level;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import login.StartPage;
 
 public class ToolKit {
 	String newPanel="";
@@ -34,7 +35,7 @@ public class ToolKit {
 
 	public static void TKSession() {
 		//close session
-		login.StartPage m = new StartPage();
+		application.StartPage m = new StartPage();
 		m.relaunch();
 	}
 
@@ -45,7 +46,7 @@ public class ToolKit {
 	}
 
 	public void TKSpecificHelp() {
-		if(login.LoginController.AClog.getMemberType()) {
+		if(controllers.LoginController.AClog.getMemberType()) {
 			//help std
 			newPanel = "StudentHelp.fxml";
 			newWindow();
