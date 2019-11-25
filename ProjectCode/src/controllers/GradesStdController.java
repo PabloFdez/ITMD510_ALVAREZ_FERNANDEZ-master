@@ -17,15 +17,12 @@ public class GradesStdController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		ResultSet rs = DaoModel.getStudentGrades(LoginController.AClog.getId());
 		try {
-			if(rs.next()) {
-				Label courseName = new Label(rs.getString(0));
-				Label grade = new Label(rs.getString(1));
-				int row = 1;
-				while(rs.next()) {
-					courseName = new Label(rs.getString(0));
-					grade = new Label(rs.getString(1));
-					grid.addRow(row,courseName,grade);
-				}
+			int row = 0;
+			while(rs.next()) {
+				Label courseName = new Label(DaoModel.selectCourseName(rs.getInt(1)));
+				Label grade = new Label(Double.toString(rs.getDouble(2)));
+				grid.addRow(row,courseName,grade);
+				row++;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
