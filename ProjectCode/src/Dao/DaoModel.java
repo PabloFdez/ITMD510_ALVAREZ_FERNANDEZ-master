@@ -29,7 +29,7 @@ public class DaoModel {
 	}
 
 	public static void createTables(){
-		
+
 		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
 
 		/*ResultSet rs = null;
@@ -186,7 +186,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	public static String selectCourseName(int id) {
 		ResultSet rs = null;
 		String sql = "SELECT cName FROM papf_courses WHERE cID = '"+id+"';";
@@ -202,6 +202,71 @@ public class DaoModel {
 		return null;
 	}
 
+	// Seleccionamos los Profesores que imparten un curso determinado
+	public static String[][] selectCoursesTeachProfessor(int cProf) {	
+		ResultSet rs = null;
+		String sql = "SELECT cID, cName FROM papf_courses WHERE cProf = "+cProf+";";
+		rs = QueryResu(sql);
+		String[][] cursos = new String[100][2];
+		int aux = 0;
+		try {
+			while(rs.next()){
+
+				cursos[aux][0] = Integer.toString(rs.getInt(1));
+				cursos[aux][1] = rs.getString(2);
+
+				aux++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cursos;				
+	}
+	
+	public static String selectStudentsNameOfCourse(int eID) {	
+		ResultSet rs = null;
+		String sql = "SELECT eFName, eLName FROM papf_students WHERE eID = "+eID+";";
+		rs = QueryResu(sql);
+		
+		//String[] studentsName = new String[100];
+		String studentsName="";
+		
+		//int aux = 0;
+		try {
+
+			while(rs.next()){
+				//studentsName[aux] = rs.getString(1) +" "+ rs.getString(2);
+				studentsName = rs.getString(1) +" "+ rs.getString(2);
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return studentsName;	
+	}
+
+	public static String[] selectStudentsOfCourse(int cID) {	
+		ResultSet rs = null;
+		String sql = "SELECT eID FROM papf_courseStudents WHERE cID = "+cID+";";
+		rs = QueryResu(sql);
+		
+		String[] students = new String[100];
+		
+		int aux = 0;
+		try {
+			while(rs.next()){
+				students[aux] = Integer.toString(rs.getInt(1));
+				aux++;
+			}				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return students;				
+	}
+	
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
@@ -271,9 +336,9 @@ public class DaoModel {
 		String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
 		QueryUpd(sql);
 	}
-	
+
 	public static void updateCourseStudentGrade(int cID, int eID, double eGrade) {
-		String sql = "UPDATE papf_courseStudents SET eGrade="+eGrade+" WHERE eID="+eID+" AND cID="+cID+";";
+		String sql = "UPDATE papf_courseStudents SET eGrade="+Double.toString(eGrade)+" WHERE eID="+eID+" AND cID="+cID+";";
 		QueryUpd(sql);
 	}
 
