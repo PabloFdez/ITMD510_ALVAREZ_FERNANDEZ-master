@@ -19,8 +19,7 @@ public class Professor extends AcademicMember{
 
 	@Override
 	public void getMemberInfo() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Professor named "+getFirstName()+" with last name "+getLastName()+" and email "+getEmail());
 	}
 	
 	/**

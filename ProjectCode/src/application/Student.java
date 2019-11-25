@@ -21,8 +21,7 @@ public class Student extends AcademicMember{
 
 	@Override
 	public void getMemberInfo() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Student named "+getFirstName()+" with last name "+getLastName()+" and email "+getEmail());
 	}
 
 
