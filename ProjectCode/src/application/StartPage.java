@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import models.DaoModel;
+import Dao.DaoModel;
 import controllers.IndexProfController;
 import controllers.IndexStdController;
 
@@ -17,7 +17,7 @@ public class StartPage  extends Application {
 		GeneralStage = primaryStage;
 		try {
 			DaoModel.createTables();
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../login/Login.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../views/login/Login.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
