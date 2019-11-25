@@ -51,7 +51,7 @@ public class DataStdController implements Initializable{
 
 	public void EditUserData() {
 		// pasar a vantana editar
-		setChangingPane("../student/EditPane.fxml");
+		setChangingPane("../views/student/EditPane.fxml");
 	}
 
 	public static boolean isNumeric(String str) {
@@ -76,7 +76,7 @@ public class DataStdController implements Initializable{
 			user.setFirstName(TfName.getText());
 			user.setLastName(TlName.getText());
 			user.setMajor(Tmajor.getText());
-			setChangingPane("../student/DataPane.fxml");
+			setChangingPane("../views/student/DataPane.fxml");
 		}
 	}
 

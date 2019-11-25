@@ -19,7 +19,7 @@ public class IndexProfController extends Application {
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../professor/IndexProf.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../views/professor/IndexProf.fxml"));
 			Scene scene = new Scene(root,640, 480);
 			secondaryStage.setTitle("Professor Site");
 			secondaryStage.setScene(scene);
@@ -41,11 +41,11 @@ public class IndexProfController extends Application {
 	}
 	
 	public void ChangingPaneProfArea(){
-		setChangingPane("../professor/DataPane.fxml");
+		setChangingPane("../views/professor/DataPane.fxml");
 	}
 	
 	public void ChangingPaneSetGrade(){
-		setChangingPane("../professor/DataPane.fxml");
+		setChangingPane("../views/professor/DataPane.fxml");
 	}
 	
 	public void TKClose() {
