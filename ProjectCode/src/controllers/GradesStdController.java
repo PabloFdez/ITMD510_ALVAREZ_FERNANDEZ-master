@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import controllers.LoginController;
 import Dao.DaoModel;
-import application.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
