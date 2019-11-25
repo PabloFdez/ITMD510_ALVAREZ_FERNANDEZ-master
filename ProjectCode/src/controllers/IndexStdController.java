@@ -46,7 +46,7 @@ public class IndexStdController extends Application {
 	}
 	
 	public void ChangingPaneCourses(){
-		setChangingPane("../views/student/DataPane.fxml");
+		setChangingPane("../views/student/GradesPane.fxml");
 	}
 	
 	public void TKClose() {

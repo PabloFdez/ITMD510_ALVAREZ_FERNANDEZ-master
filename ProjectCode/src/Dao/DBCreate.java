@@ -53,7 +53,6 @@ public class DBCreate {
 			+" cName VARCHAR(30), " + " cCredits INTEGER, " + " cProf INTEGER, " + " cUni VARCHAR(10), " + "CONSTRAINT PK_couses PRIMARY KEY ( cID ),"+
 			"CONSTRAINT FK_Prof FOREIGN KEY (cProf) REFERENCES papf_professors(pID),"+
 			"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES papf_universities(uAcronym));";
-			
 			/*String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";*/
@@ -61,7 +60,6 @@ public class DBCreate {
 			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, eGrade NUMERIC(2,2), CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";
-			
 			
 			DaoModel.QueryUpd(sql);
 			DaoModel.QueryUpd(sql1);

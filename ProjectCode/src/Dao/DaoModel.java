@@ -186,6 +186,21 @@ public class DaoModel {
 		}
 		return null; 
 	}
+	
+	public static String selectCourseName(int id) {
+		ResultSet rs = null;
+		String sql = "SELECT cName FROM papf_courses WHERE cID = '"+id+"';";
+		rs = QueryResu(sql);
+		try {
+			if(rs.next()){
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * @return record retrieved
