@@ -256,6 +256,11 @@ public class DaoModel {
 		String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
 		QueryUpd(sql);
 	}
+	
+	public static void updateCourseStudentGrade(int cID, int eID, double eGrade) {
+		String sql = "UPDATE papf_courseStudents SET eGrade="+eGrade+" WHERE eID="+eID+" AND cID="+cID+";";
+		QueryUpd(sql);
+	}
 
 	public static ResultSet getStudentGrades(int id){
 		String sql = "SELECT cID, eGrade FROM papf_courseStudents WHERE eID = "+id+";";
