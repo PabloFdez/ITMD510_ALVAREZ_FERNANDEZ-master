@@ -19,7 +19,7 @@ public class DaoModel {
 	//static Connection con = null;
 	//static DaoModel DB = null;
 	//private boolean created = false;
-	
+
 	/**
 	 * constructor
 	 * @return 
@@ -27,11 +27,25 @@ public class DaoModel {
 	public DaoModel() { // create db object instance
 		//if(!created) new DBCreate(); created = true;
 	}
-	
+
 	public static void createTables(){
+		
+		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
+
+		/*ResultSet rs = null;
+		rs = QueryResu("SELECT * FROM papf_courseStudents;");
+		try {
+			while(rs.next()){
+				System.out.println(rs.getInt(1)+"   "+rs.getInt(2)+"   "+rs.getDouble(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
 		new DBCreate();
 	}
-		
+
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
@@ -44,7 +58,7 @@ public class DaoModel {
 			System.out.println("Element inserted.");
 		}
 	}
-	
+
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
@@ -57,7 +71,7 @@ public class DaoModel {
 			System.out.println("Element inserted.");
 		}
 	}
-	
+
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
@@ -70,7 +84,7 @@ public class DaoModel {
 			System.out.println("Element inserted.");
 		}
 	}
-	
+
 	/**
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
@@ -85,18 +99,19 @@ public class DaoModel {
 	}	
 
 	/**
+	 * @param eGrade 
 	 * @param robjs (list of records)
 	 * INSERT INTO METHOD
 	 */
-	public static void insertCourseStudents(int cID, int eID) {
+	public static void insertCourseStudents(int cID, int eID, double eGrade) {
 		System.out.println("Inserting records into the table...");
-		String sql = "INSERT INTO papf_courseStudents(cID, eID) VALUES ("+cID+", "+eID+")";
+		String sql = "INSERT INTO papf_courseStudents(cID, eID, eGrade) VALUES ("+cID+", "+eID+","+eGrade+")";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
 		}
 	}	
 
-	
+
 	public static University selectUniversity(String nombreUni) {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM papf_universities WHERE uAcronym = '"+nombreUni+"';";
@@ -109,9 +124,9 @@ public class DaoModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return null; 
+		return null; 
 	}
-	
+
 	public static Professor selectProfessor(int offN) {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM papf_professors WHERE pOffi = "+offN+";";
@@ -126,7 +141,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	public static Professor selectProfessor2(int pID) {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM papf_professors WHERE pID = "+pID+";";
@@ -141,7 +156,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	public static Student selectStudent(String lName) {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM papf_students WHERE eLName = '"+lName+"';";
@@ -156,7 +171,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	public static Course selectCourse(String cName) {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM papf_courses WHERE cName = '"+cName+"';";
@@ -171,7 +186,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
@@ -180,10 +195,10 @@ public class DaoModel {
 		System.out.println("Retrieving Records...");
 		String sql = "SELECT * FROM papf_students";
 		System.out.println("Records are now retrieved");
-		
+
 		return QueryResu(sql);
 	}
-	
+
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
@@ -192,57 +207,61 @@ public class DaoModel {
 		System.out.println("Retrieving Records...");
 		String sql = "SELECT * FROM papf_professors";
 		System.out.println("Records are now retrieved");
-		
+
 		return QueryResu(sql);
 	}
-	
+
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveUniversityInfo() {//always close out of your connections 
-		 System.out.println("Retrieving Records...");
-		 String sql = "SELECT * FROM papf_universities";
-		 System.out.println("Records are now retrieved");
-			
-		 return QueryResu(sql);
+		System.out.println("Retrieving Records...");
+		String sql = "SELECT * FROM papf_universities";
+		System.out.println("Records are now retrieved");
+
+		return QueryResu(sql);
 	}
-	
+
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveCourseInfo() {//always close out of your connections 
-		 System.out.println("Retrieving Records...");
-		 String sql = "SELECT * FROM papf_courses";
-		 System.out.println("Records are now retrieved");
-			
-		 return QueryResu(sql);
+		System.out.println("Retrieving Records...");
+		String sql = "SELECT * FROM papf_courses";
+		System.out.println("Records are now retrieved");
+
+		return QueryResu(sql);
 	}
-	
+
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
 	 */
 	public ResultSet retrieveCourseStudentInfo() {//always close out of your connections 
-		 System.out.println("Retrieving Records...");
-		 String sql = "SELECT * FROM papf_courseStudents";
-		 System.out.println("Records are now retrieved");
-			
-		 return QueryResu(sql);
-	}
-	
-	public static void updateStudent(int id, String fName, String lName, String major) {
-		 String sql = "UPDATE papf_students SET eFName='"+fName+"', eLName='"+lName+"', eMaj='"+major+"' WHERE eID="+id+";";
-		 QueryUpd(sql);
-	}
-	
-	public static void updateProfessor(int id, String fName, String lName, String department, int office) {
-		 String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
-		 QueryUpd(sql);
+		System.out.println("Retrieving Records...");
+		String sql = "SELECT * FROM papf_courseStudents";
+		System.out.println("Records are now retrieved");
+
+		return QueryResu(sql);
 	}
 
-	
+	public static void updateStudent(int id, String fName, String lName, String major) {
+		String sql = "UPDATE papf_students SET eFName='"+fName+"', eLName='"+lName+"', eMaj='"+major+"' WHERE eID="+id+";";
+		QueryUpd(sql);
+	}
+
+	public static void updateProfessor(int id, String fName, String lName, String department, int office) {
+		String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
+		QueryUpd(sql);
+	}
+
+	public static ResultSet getStudentGrades(int id){
+		String sql = "SELECT cID, eGrade FROM papf_courseStudents WHERE eID = "+id+";";
+		return QueryResu(sql);
+	}
+
 	public static ResultSet QueryResu(String sentencia) {
 		// querys que devuelven resultados
 		Connection con = DBConnect.getConnection();
@@ -256,7 +275,7 @@ public class DaoModel {
 			return null;
 		}
 	}
-	
+
 	public static boolean QueryUpd(String sentencia) {
 		// querys que no devuelven resultados
 		Connection con = DBConnect.getConnection();
@@ -276,7 +295,7 @@ public class DaoModel {
 		// TODO
 		ResultSet rs = null;
 		AcademicMember AMaux = null;
-		
+
 		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
@@ -287,7 +306,7 @@ public class DaoModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(AMaux == null){
 			rs = QueryResu("SELECT * FROM papf_professors WHERE pEMail = '"+user+"' AND pPassword ='"+ pass +"';");
 			try {
@@ -300,7 +319,7 @@ public class DaoModel {
 				e.printStackTrace();
 			}
 		}
-		
-		 return AMaux; 
+
+		return AMaux; 
 	}
 }

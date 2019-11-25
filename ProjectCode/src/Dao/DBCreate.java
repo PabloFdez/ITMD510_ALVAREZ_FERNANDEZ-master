@@ -54,7 +54,11 @@ public class DBCreate {
 			"CONSTRAINT FK_Prof FOREIGN KEY (cProf) REFERENCES papf_professors(pID),"+
 			"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES papf_universities(uAcronym));";
 			
-			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
+			/*String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
+			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
+			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";*/
+			
+			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, eGrade NUMERIC(2,2), CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";
 			
@@ -179,10 +183,10 @@ public class DBCreate {
 		Course c1 = DaoModel.selectCourse("Database Security");
 		Course c2 = DaoModel.selectCourse("Programacion Concurrente");
 
-		DaoModel.insertCourseStudents(c1.getcID(),s1.getId());
-		DaoModel.insertCourseStudents(c1.getcID(),s2.getId());
-		DaoModel.insertCourseStudents(c2.getcID(),s2.getId());
-		DaoModel.insertCourseStudents(c2.getcID(),s3.getId());
+		DaoModel.insertCourseStudents(c1.getcID(),s1.getId(),0.0);
+		DaoModel.insertCourseStudents(c1.getcID(),s2.getId(),0.0);
+		DaoModel.insertCourseStudents(c2.getcID(),s2.getId(),0.0);
+		DaoModel.insertCourseStudents(c2.getcID(),s3.getId(),0.0);
 		System.out.println("Insertion completed");
 	}
 	/**
