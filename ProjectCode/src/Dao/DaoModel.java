@@ -366,10 +366,12 @@ public class DaoModel {
 			}
 			i++;
 		}
-		double gpa = grades_sum/count_courses;
-		System.out.println(gpa);
+		double gpa = grades_sum*count_courses/count_courses;
+		System.out.println(Double.toString(gpa));
 		String sql = "UPDATE papf_students SET eGPA="+Double.toString(gpa)+" WHERE eID="+eID+";";
 		QueryUpd(sql);
+		Student std = selectStudent("Alvarez");
+		System.out.println(std.getGpa());
 	}
 
 	private static Grade[] getStdCoursesGPA(int eID) {
@@ -437,7 +439,7 @@ public class DaoModel {
 		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
-				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));	
+				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getDouble(7));	
 				AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-13));
 			}
 		} catch (SQLException e) {
