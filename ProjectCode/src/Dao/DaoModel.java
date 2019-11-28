@@ -31,7 +31,9 @@ public class DaoModel {
 	public static void createTables(){
 
 		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
-
+		//QueryUpd("ALTER TABLE papf_courseStudents MODIFY eGrade numeric(4,2);");
+		//QueryUpd("ALTER TABLE papf_students MODIFY eGPA numeric(4,2);");
+		
 		/*ResultSet rs = null;
 		rs = QueryResu("SELECT * FROM papf_courseStudents;");
 		try {
@@ -340,6 +342,57 @@ public class DaoModel {
 	public static void updateCourseStudentGrade(int cID, int eID, double eGrade) {
 		String sql = "UPDATE papf_courseStudents SET eGrade="+Double.toString(eGrade)+" WHERE eID="+eID+" AND cID="+cID+";";
 		QueryUpd(sql);
+	}
+	
+	public static void updateStudentGPA(int eID) {
+		Grade[] grad = getStdCoursesGPA(eID);
+		double grades_sum = 0.0;
+		int count_courses = 0;
+		int i=0;
+		while(grad[i] != null) {
+			if(grad[i].getGrade() != 0.0) {
+				if(grad[i].getGrade() >= 9) {
+					grades_sum += 4.0;
+				} else if(grad[i].getGrade() >= 7.5) {
+					grades_sum += 3.0;
+				} else if(grad[i].getGrade() >= 6) {
+					grades_sum += 2.0;
+				} else if(grad[i].getGrade() >= 5) {
+					grades_sum += 1.0;
+				} else if(grad[i].getGrade() >= 0) {
+					grades_sum += 0.0;
+				} 
+				count_courses+=3; // always consider 3 credit per course
+			}
+			i++;
+		}
+		double gpa = grades_sum/count_courses;
+		System.out.println(gpa);
+		String sql = "UPDATE papf_students SET eGPA="+Double.toString(gpa)+" WHERE eID="+eID+";";
+		QueryUpd(sql);
+	}
+
+	private static Grade[] getStdCoursesGPA(int eID) {
+		ResultSet rs = null;
+		String sql = "SELECT cID, eGrade FROM papf_courseStudents WHERE eID ="+eID+";";
+		rs = QueryResu(sql);
+		
+		Grade[] grad = new Grade[100];
+		
+		int aux = 0;
+		Student std = new Student(eID,null,null,null,null);
+		Course c = null;
+		try {
+			while(rs.next()){
+				c = new Course(rs.getInt(1),null,0,(Professor)null,(University)null);
+				grad[aux] = new Grade(std, c, rs.getDouble(2));
+				aux++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return grad;
 	}
 
 	public static ResultSet getStudentGrades(int id){

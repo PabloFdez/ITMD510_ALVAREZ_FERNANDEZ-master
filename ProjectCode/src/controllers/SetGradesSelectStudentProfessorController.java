@@ -25,8 +25,9 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 	@FXML private Pane ChangingPane;
 	
 	public void setGradeStudent(){
-		System.out.println(pStudent.getText());
+		//System.out.println(pStudent.getText());
 		DaoModel.updateCourseStudentGrade(LoginController.courseID, Integer.parseInt(pStudent.getText()), Double.parseDouble(pGrade.getText())); 
+		DaoModel.updateStudentGPA(Integer.parseInt(pStudent.getText())); 
 		// Update of the student's grade
 		setChangingPane("../views/professor/SelectStudentGradePane.fxml");
 	}

@@ -53,7 +53,7 @@ public class DataProfController implements Initializable{
 
 	public void EditUserData() {
 		// go to edit panel
-		setChangingPane("../professor/EditPane.fxml");
+		setChangingPane("../views/professor/EditPane.fxml");
 	}
 
 
@@ -73,7 +73,7 @@ public class DataProfController implements Initializable{
 			professor.setLastName(TlName.getText());
 			professor.setDept(Tdepartment.getText());
 			professor.setOfficeNo(Integer.parseInt(Toffice.getText()));
-			setChangingPane("../professor/DataPane.fxml");
+			setChangingPane("../views/professor/DataPane.fxml");
 		}
 	}
 
