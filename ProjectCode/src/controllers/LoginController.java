@@ -12,6 +12,7 @@ public class LoginController {
 	@FXML private TextField user;
 	@FXML private TextField password;
 	public static AcademicMember AClog = null;
+	public static int courseID = 0;
 
 	public void initManager() {
 		AClog = LoginModel.authorize(user.getText(),password.getText());

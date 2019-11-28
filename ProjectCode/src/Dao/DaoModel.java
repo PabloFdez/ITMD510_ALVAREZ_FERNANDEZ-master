@@ -29,9 +29,11 @@ public class DaoModel {
 	}
 
 	public static void createTables(){
-		
-		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
 
+		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
+		//QueryUpd("ALTER TABLE papf_courseStudents MODIFY eGrade numeric(4,2);");
+		//QueryUpd("ALTER TABLE papf_students MODIFY eGPA numeric(4,2);");
+		
 		/*ResultSet rs = null;
 		rs = QueryResu("SELECT * FROM papf_courseStudents;");
 		try {
@@ -186,7 +188,7 @@ public class DaoModel {
 		}
 		return null; 
 	}
-	
+
 	public static String selectCourseName(int id) {
 		ResultSet rs = null;
 		String sql = "SELECT cName FROM papf_courses WHERE cID = '"+id+"';";
@@ -202,6 +204,71 @@ public class DaoModel {
 		return null;
 	}
 
+	// Seleccionamos los Profesores que imparten un curso determinado
+	public static String[][] selectCoursesTeachProfessor(int cProf) {	
+		ResultSet rs = null;
+		String sql = "SELECT cID, cName FROM papf_courses WHERE cProf = "+cProf+";";
+		rs = QueryResu(sql);
+		String[][] cursos = new String[100][2];
+		int aux = 0;
+		try {
+			while(rs.next()){
+
+				cursos[aux][0] = Integer.toString(rs.getInt(1));
+				cursos[aux][1] = rs.getString(2);
+
+				aux++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cursos;				
+	}
+	
+	public static String selectStudentsNameOfCourse(int eID) {	
+		ResultSet rs = null;
+		String sql = "SELECT eFName, eLName FROM papf_students WHERE eID = "+eID+";";
+		rs = QueryResu(sql);
+		
+		//String[] studentsName = new String[100];
+		String studentsName="";
+		
+		//int aux = 0;
+		try {
+
+			while(rs.next()){
+				//studentsName[aux] = rs.getString(1) +" "+ rs.getString(2);
+				studentsName = rs.getString(1) +" "+ rs.getString(2);
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return studentsName;	
+	}
+
+	public static String[] selectStudentsOfCourse(int cID) {	
+		ResultSet rs = null;
+		String sql = "SELECT eID FROM papf_courseStudents WHERE cID = "+cID+";";
+		rs = QueryResu(sql);
+		
+		String[] students = new String[100];
+		
+		int aux = 0;
+		try {
+			while(rs.next()){
+				students[aux] = Integer.toString(rs.getInt(1));
+				aux++;
+			}				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return students;				
+	}
+	
 	/**
 	 * @return record retrieved
 	 * retrieveRecords
@@ -271,10 +338,63 @@ public class DaoModel {
 		String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
 		QueryUpd(sql);
 	}
-	
+
 	public static void updateCourseStudentGrade(int cID, int eID, double eGrade) {
-		String sql = "UPDATE papf_courseStudents SET eGrade="+eGrade+" WHERE eID="+eID+" AND cID="+cID+";";
+		String sql = "UPDATE papf_courseStudents SET eGrade="+Double.toString(eGrade)+" WHERE eID="+eID+" AND cID="+cID+";";
 		QueryUpd(sql);
+	}
+	
+	public static void updateStudentGPA(int eID) {
+		Grade[] grad = getStdCoursesGPA(eID);
+		double grades_sum = 0.0;
+		int count_courses = 0;
+		int i=0;
+		while(grad[i] != null) {
+			if(grad[i].getGrade() != 0.0) {
+				if(grad[i].getGrade() >= 9) {
+					grades_sum += 4.0;
+				} else if(grad[i].getGrade() >= 7.5) {
+					grades_sum += 3.0;
+				} else if(grad[i].getGrade() >= 6) {
+					grades_sum += 2.0;
+				} else if(grad[i].getGrade() >= 5) {
+					grades_sum += 1.0;
+				} else if(grad[i].getGrade() >= 0) {
+					grades_sum += 0.0;
+				} 
+				count_courses+=3; // always consider 3 credit per course
+			}
+			i++;
+		}
+		double gpa = grades_sum*count_courses/count_courses;
+		System.out.println(Double.toString(gpa));
+		String sql = "UPDATE papf_students SET eGPA="+Double.toString(gpa)+" WHERE eID="+eID+";";
+		QueryUpd(sql);
+		Student std = selectStudent("Alvarez");
+		System.out.println(std.getGpa());
+	}
+
+	private static Grade[] getStdCoursesGPA(int eID) {
+		ResultSet rs = null;
+		String sql = "SELECT cID, eGrade FROM papf_courseStudents WHERE eID ="+eID+";";
+		rs = QueryResu(sql);
+		
+		Grade[] grad = new Grade[100];
+		
+		int aux = 0;
+		Student std = new Student(eID,null,null,null,null);
+		Course c = null;
+		try {
+			while(rs.next()){
+				c = new Course(rs.getInt(1),null,0,(Professor)null,(University)null);
+				grad[aux] = new Grade(std, c, rs.getDouble(2));
+				aux++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return grad;
 	}
 
 	public static ResultSet getStudentGrades(int id){
@@ -319,7 +439,7 @@ public class DaoModel {
 		rs = QueryResu("SELECT * FROM papf_students WHERE eEMail = '"+user+"' AND ePassword ='"+ pass +"';");
 		try {
 			if(rs.next()){
-				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));	
+				AMaux = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getDouble(7));	
 				AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-13));
 			}
 		} catch (SQLException e) {

@@ -45,7 +45,7 @@ public class IndexProfController extends Application {
 	}
 	
 	public void ChangingPaneSetGrade(){
-		setChangingPane("../views/professor/DataPane.fxml");
+		setChangingPane("../views/professor/SelectCoursePane.fxml");
 	}
 	
 	public void TKClose() {

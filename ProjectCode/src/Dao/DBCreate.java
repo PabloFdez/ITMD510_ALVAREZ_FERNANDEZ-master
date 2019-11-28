@@ -42,7 +42,7 @@ public class DBCreate {
 	 */
 	public void createTable() {
 			String sql = "CREATE TABLE papf_students" + "(eID INTEGER not NULL AUTO_INCREMENT, "
-			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " ePassword VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(2,2), " + " PRIMARY KEY ( eID ));";
+			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " ePassword VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(4,2), " + " PRIMARY KEY ( eID ));";
 			
 			String sql1 = "CREATE TABLE papf_professors" + "(pID INTEGER not NULL AUTO_INCREMENT, "
 			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pPassword VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
@@ -53,11 +53,12 @@ public class DBCreate {
 			+" cName VARCHAR(30), " + " cCredits INTEGER, " + " cProf INTEGER, " + " cUni VARCHAR(10), " + "CONSTRAINT PK_couses PRIMARY KEY ( cID ),"+
 			"CONSTRAINT FK_Prof FOREIGN KEY (cProf) REFERENCES papf_professors(pID),"+
 			"CONSTRAINT FK_Uni FOREIGN KEY (cUni) REFERENCES papf_universities(uAcronym));";
+			
 			/*String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";*/
 			
-			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, eGrade NUMERIC(2,2), CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
+			String sql4 = "CREATE TABLE papf_courseStudents (cID INTEGER not NULL, eID INTEGER not NULL, eGrade NUMERIC(4,2), CONSTRAINT PK_cS PRIMARY KEY (cID,eID),"+ 
 			"CONSTRAINT FK_Courses FOREIGN KEY (cID) REFERENCES papf_courses(cID),"+
 			"CONSTRAINT FK_Students FOREIGN KEY (eID) REFERENCES papf_students(eID));";
 			
