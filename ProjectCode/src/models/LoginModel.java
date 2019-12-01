@@ -1,6 +1,7 @@
 package models;
 
 import Dao.DaoModel;
+import application.Admin;
 
 public class LoginModel {
 	/**
@@ -10,6 +11,9 @@ public class LoginModel {
 	 * otherwise, return null.
 	 */ 
 	public static AcademicMember authorize(String user, String pass) {
-		return new DaoModel().login(user,pass);
+		if(user.equals("admin@admin") && pass.equals("admin")) {
+			return new Admin("admin","admin","admin","@admin");
+		}
+		return new DaoModel().login(user,models.HashingModel.hash(pass));
 	}
 }

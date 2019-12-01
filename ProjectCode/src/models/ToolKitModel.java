@@ -46,11 +46,12 @@ public class ToolKitModel {
 	}
 
 	public void TKSpecificHelp() {
-		if(controllers.LoginController.AClog.getMemberType()) {
+		int type = controllers.LoginController.AClog.getMemberType();
+		if(type == 0){
 			//help std
 			newPanel = "StudentHelp.fxml";
 			newWindow();
-		} else {
+		} else if(type == 1) {
 			//help prof
 			newPanel = "ProfessorHelp.fxml";
 			newWindow();

@@ -55,8 +55,7 @@
                      <font><Font size="26.0" /></font>
                   </Label>
                   <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#initManager" prefHeight="37.0" prefWidth="75.0" text="LOGIN" GridPane.columnIndex="1" GridPane.rowIndex="2" />                  
-                  <Button mnemonicParsing="false" onAction="#initRegManager" prefHeight="37.0" prefWidth="75.0" text="REGISTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#initManager" prefHeight="37.0" prefWidth="75.0" text="LOGIN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#initHelp" prefHeight="37.0" prefWidth="75.0" text="HELP" GridPane.rowIndex="3" />
                </children>
             </GridPane>

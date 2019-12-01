@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Dao.DaoModel;
+import controllers.IndexAdminController;
 import controllers.IndexProfController;
 import controllers.IndexStdController;
 
@@ -42,5 +43,10 @@ public class StartPage  extends Application {
 	public static void changeToProf() {
 		IndexProfController ProfWindow = new IndexProfController();
 		ProfWindow.start(GeneralStage);
+	}
+
+	public static void changeToAdmin() {
+		IndexAdminController AdmWindow = new IndexAdminController();
+		AdmWindow.start(GeneralStage);
 	}
 }

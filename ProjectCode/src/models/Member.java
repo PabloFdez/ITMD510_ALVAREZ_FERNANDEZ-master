@@ -1,6 +1,6 @@
 package models;
 
 public interface Member {
-	public boolean getMemberType();
+	public int getMemberType();
 	public void getMemberInfo();
 }

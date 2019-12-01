@@ -33,6 +33,29 @@ public class DaoModel {
 		//QueryUpd("ALTER TABLE papf_courseStudents ADD eGrade numeric(2,2);");
 		//QueryUpd("ALTER TABLE papf_courseStudents MODIFY eGrade numeric(4,2);");
 		//QueryUpd("ALTER TABLE papf_students MODIFY eGPA numeric(4,2);");
+		//QueryUpd("ALTER TABLE papf_students MODIFY ePassword VARCHAR(64);"); //lenght sha-256 in char equals to 64 always
+		//QueryUpd("ALTER TABLE papf_professors MODIFY pPassword VARCHAR(64);"); //lenght sha-256 in char equals to 64 always
+		//String hashPass = models.HashingModel.hash("pass");
+		/*String sql = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'pfernandezdiaz@hawk.iit.edu';";
+		String sql2 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'palvarezfernandez@hawk.iit.edu';";
+		String sql3 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'jjonnes20@hawk.iit.edu';";
+		String sql4 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'shernandez8@hawk.iit.edu';";
+		String sql5 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'lrajoy@hawk.iit.edu';";
+		DaoModel.QueryUpd(sql);
+		DaoModel.QueryUpd(sql2);
+		DaoModel.QueryUpd(sql3);
+		DaoModel.QueryUpd(sql4);
+		DaoModel.QueryUpd(sql5);*/
+		/*String sql1 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'lpapademas@iit.edu';";
+		String sql12 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'jpapademas@iit.edu';";
+		String sql13 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'dmo@iit.edu';";
+		String sql14 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'rrao@iit.edu';";
+		String sql15 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'jhajek@iit.edu';";
+		DaoModel.QueryUpd(sql1);
+		DaoModel.QueryUpd(sql12);
+		DaoModel.QueryUpd(sql13);
+		DaoModel.QueryUpd(sql14);
+		DaoModel.QueryUpd(sql15);*/
 		
 		/*ResultSet rs = null;
 		rs = QueryResu("SELECT * FROM papf_courseStudents;");
@@ -41,7 +64,6 @@ public class DaoModel {
 				System.out.println(rs.getInt(1)+"   "+rs.getInt(2)+"   "+rs.getDouble(3));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
 

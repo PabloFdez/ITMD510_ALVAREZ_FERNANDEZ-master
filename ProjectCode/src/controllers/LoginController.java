@@ -29,12 +29,16 @@ public class LoginController {
 		// debug proposes
 		AClog.getMemberInfo();
 		//showMainView(sessionID);
-		if(AClog.getMemberType()){
+		int type = AClog.getMemberType();
+		if(type == 0){
 			System.out.println("go to student page");
 			StartPage.changeToStd();
-		} else {
+		} else if(type == 1) {
 			System.out.println("go to prof page");
 			StartPage.changeToProf();
+		} else if(type == 2) {
+			System.out.println("go to admin page");
+			StartPage.changeToAdmin();
 		}
 	}
 	

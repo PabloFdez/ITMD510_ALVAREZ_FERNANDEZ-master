@@ -42,7 +42,7 @@ public class DBCreate {
 	 */
 	public void createTable() {
 			String sql = "CREATE TABLE papf_students" + "(eID INTEGER not NULL AUTO_INCREMENT, "
-			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " ePassword VARCHAR(30), " + " eMaj VARCHAR(30), " + " eGPA numeric(4,2), " + " PRIMARY KEY ( eID ));";
+			+" eFName VARCHAR(20), " + " eLName VARCHAR(30), " + " eEMail VARCHAR(30), " + " ePassword VARCHAR(64), " + " eMaj VARCHAR(30), " + " eGPA numeric(4,2), " + " PRIMARY KEY ( eID ));";
 			
 			String sql1 = "CREATE TABLE papf_professors" + "(pID INTEGER not NULL AUTO_INCREMENT, "
 			+" pFName VARCHAR(20), " + " pLName VARCHAR(30), " + " pEMail VARCHAR(30), " + " pPassword VARCHAR(30), " + " pDept VARCHAR(30), " + " pOffi INTEGER, " + " PRIMARY KEY ( pID ));";
@@ -95,12 +95,13 @@ public class DBCreate {
 		Student s5 = new Student("Luis", "Rajoy", "lrajoy", "MCS");
 		
 		// Update Passwords
-		String sql = "Update papf_students SET ePassword = 'pass'  WHERE eEMail = 'pfernandezdiaz@hawk.iit.edu';";
-		String sql2 = "Update papf_students SET ePassword = 'pass'  WHERE eEMail = 'palvarezfernandez@hawk.iit.edu';";
-		String sql3 = "Update papf_students SET ePassword = 'pass'  WHERE eEMail = 'jjonnes20@hawk.iit.edu';";
-		String sql4 = "Update papf_students SET ePassword = 'pass'  WHERE eEMail = 'shernandez8@hawk.iit.edu';";
-		String sql5 = "Update papf_students SET ePassword = 'pass'  WHERE eEMail = 'lrajoy@hawk.iit.edu';";
-						
+		String hashPass = models.HashingModel.hash("pass");
+		String sql = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'pfernandezdiaz@hawk.iit.edu';";
+		String sql2 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'palvarezfernandez@hawk.iit.edu';";
+		String sql3 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'jjonnes20@hawk.iit.edu';";
+		String sql4 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'shernandez8@hawk.iit.edu';";
+		String sql5 = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = 'lrajoy@hawk.iit.edu';";
+		
 		// Insert Students
 		DaoModel.insertStudent(s1);
 		DaoModel.insertStudent(s2);
@@ -131,11 +132,12 @@ public class DBCreate {
 		Professor p5 = new Professor("Jeremy", "Hajek", "jhajek","ITM",207);
 		
 		// Update Passwords
-		String sql = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'lpapademas@iit.edu';";
-		String sql2 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'jpapademas@iit.edu';";
-		String sql3 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'dmo@iit.edu';";
-		String sql4 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'rrao@iit.edu';";
-		String sql5 = "Update papf_professors SET pPassword = 'pass'  WHERE pEMail = 'jhajek@iit.edu';";
+		String hashPass = models.HashingModel.hash("pass");
+		String sql = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'lpapademas@iit.edu';";
+		String sql2 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'jpapademas@iit.edu';";
+		String sql3 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'dmo@iit.edu';";
+		String sql4 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'rrao@iit.edu';";
+		String sql5 = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = 'jhajek@iit.edu';";
 		
 		DaoModel.insertProfessor(p1);
 		DaoModel.insertProfessor(p2);
