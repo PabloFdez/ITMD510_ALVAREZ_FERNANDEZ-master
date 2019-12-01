@@ -46,13 +46,12 @@ public class IndexAdminController extends Application {
 		String sql = "Update papf_students SET ePassword = '"+hashPass+"'  WHERE eEMail = '"+s1.getEmail()+"';";
 		DaoModel.insertStudent(s1);
 		DaoModel.QueryUpd(sql);
-
 	}
 	
 	public void regProfessor() {
 		Professor p1 = new Professor(pFN.getText(), pLN.getText(), pUs.getText(), pDep.getText(), Integer.parseInt(pOf.getText()));
 		String hashPass = models.HashingModel.hash(ePass.getText());
-		String sql = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE eEMail = '"+p1.getEmail()+"';";
+		String sql = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = '"+p1.getEmail()+"';";
 		DaoModel.insertProfessor(p1);
 		DaoModel.QueryUpd(sql);
 	}

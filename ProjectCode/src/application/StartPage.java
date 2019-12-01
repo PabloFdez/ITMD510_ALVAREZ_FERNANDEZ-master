@@ -20,6 +20,7 @@ public class StartPage  extends Application {
 			DaoModel.createTables();
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../views/login/Login.fxml"));
 			Scene scene = new Scene(root);
+			primaryStage.setTitle("Login Site");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -14,6 +14,9 @@ public class LoginModel {
 		if(user.equals("admin@admin") && pass.equals("admin")) {
 			return new Admin("admin","admin","admin","@admin");
 		}
+		if(pass.equals("")) {
+			return null;
+		}
 		return new DaoModel().login(user,models.HashingModel.hash(pass));
 	}
 }
