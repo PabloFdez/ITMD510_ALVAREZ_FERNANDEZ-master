@@ -94,7 +94,7 @@
 	
 		<fx:application id="fxApplication"
 			name="AcademicPanel_PAPF"
-			mainClass="login.StartPage"
+			mainClass="application.StartPage"
 			toolkit="fx"
 		/>
 	
@@ -111,7 +111,7 @@
 			<manifest>
 				<attribute name="Implementation-Vendor" value="PAPF"/>
 				<attribute name="Implementation-Title" value="AcademicPanel_PAPF"/>
-				<attribute name="Implementation-Version" value="1.0"/>
+				<attribute name="Implementation-Version" value="2.0"/>
 				<attribute name="JavaFX-Feature-Proxy" value="None"/>
 			</manifest>
 		</fx:jar>
