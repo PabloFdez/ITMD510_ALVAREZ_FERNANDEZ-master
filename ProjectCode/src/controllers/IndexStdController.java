@@ -12,6 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.ToolKitModel;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * IndexStdController class
+ * Iniciates the student page
+ */
 public class IndexStdController extends Application {
 	@FXML
 	private Pane ChangingPane;
@@ -31,7 +37,7 @@ public class IndexStdController extends Application {
 	}
 	
 	public void setChangingPane(String PanelNuevo) {
-		// cambiar panel pasando el nombre de la venta a la que se quiere ir
+		// change pane to the window you want to go
 		try {
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
@@ -42,13 +48,16 @@ public class IndexStdController extends Application {
 	}
 	
 	public void ChangingPaneStudentArea(){
+		// go to personal data feature
 		setChangingPane("../views/student/DataPane.fxml");
 	}
 	
 	public void ChangingPaneCourses(){
+		// go to see grades feature
 		setChangingPane("../views/student/GradesPane.fxml");
 	}
 	
+	// toolbar methods
 	public void TKClose() {
 		ToolKitModel.TKClose();
 	}

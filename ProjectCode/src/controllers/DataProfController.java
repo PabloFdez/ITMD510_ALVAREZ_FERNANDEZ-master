@@ -10,39 +10,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import models.DataModel;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * DataProfController class
+ * Control the personal data for the professor page
+ */
 public class DataProfController implements Initializable{
 	private Professor professor = (Professor) controllers.LoginController.AClog;
-	@FXML
-	private Pane ChangingPane;
-	@FXML
-	private Label fName;
-	@FXML
-	private Label lName;
-	@FXML
-	private Label email;
-	@FXML
-	private Label department;
-	@FXML
-	private Label office;
-	@FXML
-	private TextField TfName;
-	@FXML
-	private TextField TlName;
-	@FXML
-	private TextField Tdepartment;
-	@FXML
-	private TextField Toffice;
-	@FXML
-	private Button BUboton;
+	@FXML private Pane ChangingPane;
+	@FXML private Label fName;
+	@FXML private Label lName;
+	@FXML private Label email;
+	@FXML private Label department;
+	@FXML private Label office;
+	@FXML private TextField TfName;
+	@FXML private TextField TlName;
+	@FXML private TextField Tdepartment;
+	@FXML private TextField Toffice;
 
 	public void setChangingPane(String PanelNuevo) {
-		// cambiar panel pasando el nombre de la venta a la que se quiere ir
+		// change pane to the window you want to go
 		try {
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
@@ -56,11 +49,8 @@ public class DataProfController implements Initializable{
 		setChangingPane("../views/professor/EditPane.fxml");
 	}
 
-
-
 	public void SaveEdit() {
 		// send correct data to db
-
 		if ((TfName.getText().length() <= 0) || (TlName.getText().length() <= 0) || 
 				(Tdepartment.getText().length()) <= 0 || !DataModel.isNumeric(Toffice.getText()) || Toffice.getText().length()<=0) {
 			DataModel.sendAlert("Save error", "Please review the data");
@@ -77,10 +67,7 @@ public class DataProfController implements Initializable{
 		}
 	}
 
-	public void BackUpGeneral() {
-		// mandar a la bbdd que clone la bd
-	}
-
+	// set the db data
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		if (location.toString().contains("DataPane.fxml")) {

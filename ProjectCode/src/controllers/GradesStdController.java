@@ -11,8 +11,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * GradesStdController class
+ * Control the input data for the grades student page
+ */
 public class GradesStdController implements Initializable {
 	@FXML GridPane grid;
+	
+	// set the db data
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ResultSet rs = DaoModel.getStudentGrades(LoginController.AClog.getId());
@@ -25,10 +33,8 @@ public class GradesStdController implements Initializable {
 				row++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 }

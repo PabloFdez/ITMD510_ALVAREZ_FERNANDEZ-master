@@ -10,37 +10,31 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import models.DataModel;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * DataStdController class
+ * Control the personal data for the student page
+ */
 public class DataStdController implements Initializable{
 	private Student user = (Student) controllers.LoginController.AClog;
-	@FXML
-	private Pane ChangingPane;
-	@FXML
-	private Label fName;
-	@FXML
-	private Label lName;
-	@FXML
-	private Label email;
-	@FXML
-	private Label major;
-	@FXML
-	private Label gpa;
-	@FXML
-	private TextField TfName;
-	@FXML
-	private TextField TlName;
-	@FXML
-	private TextField Tmajor;
-	@FXML
-	private Button BUboton;
+	@FXML private Pane ChangingPane;
+	@FXML private Label fName;
+	@FXML private Label lName;
+	@FXML private Label email;
+	@FXML private Label major;
+	@FXML private Label gpa;
+	@FXML private TextField TfName;
+	@FXML private TextField TlName;
+	@FXML private TextField Tmajor;
 	
 	public void setChangingPane(String PanelNuevo) {
-		// cambiar panel pasando el nombre de la venta a la que se quiere ir
+		// change pane to the window you want to go
 		try {
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
@@ -50,7 +44,7 @@ public class DataStdController implements Initializable{
 	}
 
 	public void EditUserData() {
-		// pasar a vantana editar
+		// go to edit window
 		setChangingPane("../views/student/EditPane.fxml");
 	}
 
@@ -59,8 +53,7 @@ public class DataStdController implements Initializable{
 	}
 
 	public void SaveEdit() {
-		// mandar datos correctos a la bbdd
-
+		// send correct data to db
 		if ((TfName.getText().length() <= 0) || (TlName.getText().length() <= 0) || 
 				(Tmajor.getText().length()) <= 0) {
 			DataModel.sendAlert("Save error", "Please review the data");
@@ -76,10 +69,7 @@ public class DataStdController implements Initializable{
 		}
 	}
 
-	public void BackUpGeneral() {
-		// mandar a la bbdd que clone la bd
-	}
-
+	// set the db data
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		if (location.toString().contains("DataPane.fxml")) {

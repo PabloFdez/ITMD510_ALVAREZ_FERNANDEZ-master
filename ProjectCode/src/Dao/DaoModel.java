@@ -57,15 +57,15 @@ public class DaoModel {
 		DaoModel.QueryUpd(sql14);
 		DaoModel.QueryUpd(sql15);*/
 		
-		/*ResultSet rs = null;
-		rs = QueryResu("SELECT * FROM papf_courseStudents;");
+		ResultSet rs = null;
+		rs = QueryResu("SELECT * FROM papf_professors;");
 		try {
 			while(rs.next()){
-				System.out.println(rs.getInt(1)+"   "+rs.getInt(2)+"   "+rs.getDouble(3));
+				System.out.println(rs.getInt(1)+"   "+rs.getString(2)+"   "+rs.getString(3)+"   "+rs.getString(4)+"   "+rs.getString(6)+"   "+rs.getInt(7));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 		new DBCreate();
 	}
@@ -454,7 +454,6 @@ public class DaoModel {
 	}
 
 	public AcademicMember login(String user, String pass) {
-		// TODO
 		ResultSet rs = null;
 		AcademicMember AMaux = null;
 
@@ -465,7 +464,6 @@ public class DaoModel {
 				AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-13));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -477,7 +475,6 @@ public class DaoModel {
 					AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-8));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

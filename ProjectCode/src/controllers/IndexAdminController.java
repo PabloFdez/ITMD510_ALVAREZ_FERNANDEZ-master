@@ -13,6 +13,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.ToolKitModel;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * IndexAdminController class
+ * Iniciates the admin page
+ */
 public class IndexAdminController extends Application {
 	@FXML private TextField eFN;
 	@FXML private TextField eLN;
@@ -40,6 +46,7 @@ public class IndexAdminController extends Application {
 		}
 	}
 	
+	// register a student
 	public void regStudent() {
 		Student s1 = new Student(eFN.getText(), eLN.getText(), eUs.getText(), eMaj.getText());
 		String hashPass = models.HashingModel.hash(ePass.getText());
@@ -48,14 +55,16 @@ public class IndexAdminController extends Application {
 		DaoModel.QueryUpd(sql);
 	}
 	
+	// register a professor
 	public void regProfessor() {
 		Professor p1 = new Professor(pFN.getText(), pLN.getText(), pUs.getText(), pDep.getText(), Integer.parseInt(pOf.getText()));
-		String hashPass = models.HashingModel.hash(ePass.getText());
+		String hashPass = models.HashingModel.hash(pPass.getText());
 		String sql = "Update papf_professors SET pPassword = '"+hashPass+"'  WHERE pEMail = '"+p1.getEmail()+"';";
 		DaoModel.insertProfessor(p1);
 		DaoModel.QueryUpd(sql);
 	}
 	
+	// toolbar methods
 	public void TKClose() {
 		ToolKitModel.TKClose();
 	}

@@ -14,12 +14,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * SetGradesProfessorController class
+ * Control the selection of the courses
+ */
 public class SetGradesProfessorController implements Initializable {
 	
 	@FXML GridPane grid;
-	
 	@FXML TextField pCourse;
-	
 	@FXML
 	private Pane ChangingPane;
 	
@@ -43,7 +47,7 @@ public class SetGradesProfessorController implements Initializable {
 	}
 	
 	public void setChangingPane(String PanelNuevo) {
-		// cambiar panel pasando el nombre de la venta a la que se quiere ir
+		// change pane to the window you want to go
 		try {
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));

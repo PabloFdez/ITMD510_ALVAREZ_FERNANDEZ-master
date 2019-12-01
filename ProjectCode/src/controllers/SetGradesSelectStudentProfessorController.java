@@ -14,14 +14,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * SetGradesSelectStudentProfessorController class
+ * Control the insertion of the grade of a student on a course
+ */
 public class SetGradesSelectStudentProfessorController implements Initializable {
 	
 	@FXML GridPane grid;
-	
 	@FXML TextField pStudent;
-	
 	@FXML TextField pGrade;
-	
 	@FXML private Pane ChangingPane;
 	
 	public void setGradeStudent(){
@@ -34,11 +37,6 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//Label id = new Label(Integer.parseInt(LoginController.courseID));
-		//Label grade = new Label(pGrade.toString());
-		//grid.addRow(0, id);
-		//grid.addRow(1, grade);
-		
 		String[] students = DaoModel.selectStudentsOfCourse(LoginController.courseID);
 		
 		int row = 0;
@@ -55,7 +53,7 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 	}
 	
 	public void setChangingPane(String PanelNuevo) {
-		// cambiar panel pasando el nombre de la venta a la que se quiere ir
+		// change pane to the window you want to go
 		try {
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));

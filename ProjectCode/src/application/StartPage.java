@@ -10,6 +10,12 @@ import controllers.IndexAdminController;
 import controllers.IndexProfController;
 import controllers.IndexStdController;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * StartPage class
+ * Defines the aplication start and redirects to user sites
+ */
 public class StartPage  extends Application {
 	protected static Stage GeneralStage = null;
 
@@ -36,16 +42,25 @@ public class StartPage  extends Application {
 		start(GeneralStage);
 	}
 
+	/**
+	 * redirects to student site
+	 */
 	public static void changeToStd() {
 		IndexStdController StdWindow = new IndexStdController();
 		StdWindow.start(GeneralStage);
 	}
 	
+	/**
+	 * redirects to professor site
+	 */
 	public static void changeToProf() {
 		IndexProfController ProfWindow = new IndexProfController();
 		ProfWindow.start(GeneralStage);
 	}
 
+	/**
+	 * redirects to admin site
+	 */
 	public static void changeToAdmin() {
 		IndexAdminController AdmWindow = new IndexAdminController();
 		AdmWindow.start(GeneralStage);

@@ -2,6 +2,12 @@ package models;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * DataModel class
+ * Defines data control and alert model
+ */
 public class HashingModel {
 	public static String hash(String password) {
 		MessageDigest md;

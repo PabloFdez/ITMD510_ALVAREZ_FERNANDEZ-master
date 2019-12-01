@@ -9,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * ToolKitModel class
+ * Methods for the top nav bar
+ */
 public class ToolKitModel {
 	String newPanel="";
 	public void newWindow() {

@@ -6,6 +6,12 @@ import java.sql.SQLException;
 
 import application.*;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * DBCreate class
+ * Create the DB if it isn't found 
+ */
 public class DBCreate {
 	//Connection con = null;
 	//DaoModel DB;
@@ -191,33 +197,32 @@ public class DBCreate {
 		System.out.println("Insertion completed");
 	}
 	/**
- * INSERT INTO METHOD for dummy initial records
- */
-
-public void insertDummyRecordsCourses() {
-	// Execute a query
-	System.out.println("Inserting dummy records of courses into the table...");
+	 * INSERT INTO METHOD for dummy initial records
+	 */
+	public void insertDummyRecordsCourses() {
+		// Execute a query
+		System.out.println("Inserting dummy records of courses into the table...");
+		
+		University u1 = DaoModel.selectUniversity("IIT");
+		University u2 = DaoModel.selectUniversity("UPM");
+		
+		Professor p1 = DaoModel.selectProfessor(643);
+		Professor p2 = DaoModel.selectProfessor(163);
+		Professor p3 = DaoModel.selectProfessor(281);
+		Professor p4 = DaoModel.selectProfessor(207);
+		
 	
-	University u1 = DaoModel.selectUniversity("IIT");
-	University u2 = DaoModel.selectUniversity("UPM");
-	
-	Professor p1 = DaoModel.selectProfessor(643);
-	Professor p2 = DaoModel.selectProfessor(163);
-	Professor p3 = DaoModel.selectProfessor(281);
-	Professor p4 = DaoModel.selectProfessor(207);
-	
-
-	Course c1 = new Course("Database Security", 3, p1,u1);
-	Course c2 = new Course("Programacion Concurrente", 6, p2,u2);
-	Course c3 = new Course("Security Topics", 3, p1,u1);
-	Course c4 = new Course("Inteligencia Artifical", 3, p4,u2);
-	Course c5 = new Course("Vendor Management", 3, p3,u1);
-	
-	DaoModel.insertCourse(c1);
-	DaoModel.insertCourse(c2);
-	DaoModel.insertCourse(c3);
-	DaoModel.insertCourse(c4);
-	DaoModel.insertCourse(c5);
-	System.out.println("Insertion completed");
-}
+		Course c1 = new Course("Database Security", 3, p1,u1);
+		Course c2 = new Course("Programacion Concurrente", 6, p2,u2);
+		Course c3 = new Course("Security Topics", 3, p1,u1);
+		Course c4 = new Course("Inteligencia Artifical", 3, p4,u2);
+		Course c5 = new Course("Vendor Management", 3, p3,u1);
+		
+		DaoModel.insertCourse(c1);
+		DaoModel.insertCourse(c2);
+		DaoModel.insertCourse(c3);
+		DaoModel.insertCourse(c4);
+		DaoModel.insertCourse(c5);
+		System.out.println("Insertion completed");
+	}
 }

@@ -1,5 +1,11 @@
 package application;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Grade class
+ * Defines Grade Type
+ */
 public class Grade {
 	private Student std;
 	private Course c;

@@ -7,7 +7,11 @@ import models.AcademicMember;
 import models.LoginModel;
 import models.ToolKitModel;
 
-/** Controls the login screen */
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Controls the login screen
+ */
 public class LoginController {
 	@FXML private TextField user;
 	@FXML private TextField password;
@@ -42,6 +46,7 @@ public class LoginController {
 		}
 	}
 	
+	// toolbar methods
 	public void initRegManager() {
 		StartPage.launch();
 	}

@@ -3,11 +3,17 @@ package models;
 import Dao.DaoModel;
 import application.Admin;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * LoginModel class
+ * Check authorization credentials
+ */
 public class LoginModel {
 	/**
 	 * Check authorization credentials.
 	 * 
-	 * If accepted, return a sessionID for the authorized session
+	 * If accepted, return a AcademicMember for the authorized session
 	 * otherwise, return null.
 	 */ 
 	public static AcademicMember authorize(String user, String pass) {
