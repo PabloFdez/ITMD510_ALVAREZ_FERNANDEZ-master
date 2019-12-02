@@ -1,5 +1,11 @@
 package models;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * AcademicMember class
+ * Defines the abstract type AcademicMember that is implemented by the three users
+ */
 public abstract class AcademicMember implements Member {
 	int id;
 	String firstName;
@@ -23,12 +29,15 @@ public abstract class AcademicMember implements Member {
 	}
 	
 	@Override
-	public boolean getMemberType() {
-		// TODO Auto-generated method stub
+	public int getMemberType() {
 		if(this.getEmail().contains("hawk.iit.edu")) {
-			return true;
+			return 0;
+		} else if(this.getEmail().contains("iit.edu")) {
+			return 1;
+		} else if(this.getEmail().contains("admin")) {
+			return 2;
 		}
-		return false;
+		return 3;
 	}
 
 	/**

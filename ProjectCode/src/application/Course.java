@@ -1,5 +1,11 @@
 package application;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Course class
+ * Defines Course Type
+ */
 public class Course {
 	String cName;
 	int cID;

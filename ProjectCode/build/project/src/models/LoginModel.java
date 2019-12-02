@@ -1,10 +1,28 @@
 package models;
 
-public class LoginModel {
-	Boolean admin;
-	DBConnect db;
+import Dao.DaoModel;
+import application.Admin;
 
-	public LoginModel() {
-		admin = false;
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * LoginModel class
+ * Check authorization credentials
+ */
+public class LoginModel {
+	/**
+	 * Check authorization credentials.
+	 * 
+	 * If accepted, return a AcademicMember for the authorized session
+	 * otherwise, return null.
+	 */ 
+	public static AcademicMember authorize(String user, String pass) {
+		if(user.equals("admin@admin") && pass.equals("admin")) {
+			return new Admin("admin","admin","admin","@admin");
+		}
+		if(pass.equals("")) {
+			return null;
+		}
+		return new DaoModel().login(user,models.HashingModel.hash(pass));
 	}
 }

@@ -1,6 +1,12 @@
 package application;
 import models.AcademicMember;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Professor class
+ * Defines Professor Type User
+ */
 public class Professor extends AcademicMember{
 	String department;
 	int officeNo;

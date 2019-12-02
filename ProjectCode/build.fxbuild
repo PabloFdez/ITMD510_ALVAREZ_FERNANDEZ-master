@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
   <deploy includeDT="true" packagingFormat="none">
-    <application name="Phase1" mainclass="application.StartPage" version="1.0" toolkit="fx"/>
+    <application name="Phase1" mainclass="application.StartPage" version="2.0" toolkit="fx"/>
     <info title="AcademicPanel_PAPF" vendor="PAPF"/>
   </deploy>
   <signjar/>

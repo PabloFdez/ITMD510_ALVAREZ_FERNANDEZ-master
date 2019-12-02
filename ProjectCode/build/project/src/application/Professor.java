@@ -1,6 +1,12 @@
 package application;
 import models.AcademicMember;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Professor class
+ * Defines Professor Type User
+ */
 public class Professor extends AcademicMember{
 	String department;
 	int officeNo;
@@ -19,8 +25,7 @@ public class Professor extends AcademicMember{
 
 	@Override
 	public void getMemberInfo() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Professor named "+getFirstName()+" with last name "+getLastName()+" and email "+getEmail());
 	}
 	
 	/**

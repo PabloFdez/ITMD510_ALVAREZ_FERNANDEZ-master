@@ -1,6 +1,12 @@
 package application;
 import models.AcademicMember;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Student class
+ * Defines Student Type User
+ */
 public class Student extends AcademicMember{
 	double gpa;
 	String major;
@@ -17,12 +23,17 @@ public class Student extends AcademicMember{
 		major = maj;
 		gpa = 0;
 	}
+	
+	public Student(int id, String fName, String lName, String eM, String maj, double GPA) {
+		super(id, fName, lName, eM, "@hawk.iit.edu");
+		major = maj;
+		gpa = GPA;
+	}
 
 
 	@Override
 	public void getMemberInfo() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Student named "+getFirstName()+" with last name "+getLastName()+" and email "+getEmail());
 	}
 
 

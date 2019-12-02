@@ -1,5 +1,11 @@
 package application;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * University class
+ * Defines University Type
+ */
 public class University {
 	String uAcronym;
 	String uName;

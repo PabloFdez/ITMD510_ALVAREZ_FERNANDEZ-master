@@ -1,6 +1,12 @@
 package application;
 import models.AcademicMember;
 
+/**
+ * @author Pablo Angel Alvarez Fernandez
+ * @author Pablo Fernandez Diaz
+ * Student class
+ * Defines Student Type User
+ */
 public class Student extends AcademicMember{
 	double gpa;
 	String major;
