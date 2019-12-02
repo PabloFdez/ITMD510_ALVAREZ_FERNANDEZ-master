@@ -57,7 +57,8 @@ public class DaoModel {
 		DaoModel.QueryUpd(sql14);
 		DaoModel.QueryUpd(sql15);*/
 		
-		ResultSet rs = null;
+		// SELECT to check the content of the table
+		/*ResultSet rs = null;
 		rs = QueryResu("SELECT * FROM papf_professors;");
 		try {
 			while(rs.next()){
@@ -65,7 +66,7 @@ public class DaoModel {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		new DBCreate();
 	}

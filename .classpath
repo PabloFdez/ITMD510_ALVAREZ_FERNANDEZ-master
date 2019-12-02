@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="ProjectCode/src"/>
+	<classpathentry kind="lib" path="ProjectCode/build/build/libs/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/build/deploy/ITMD510_ALVAREZ_FERNANDEZ.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/build/deploy/libs/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/build/dist/ITMD510_ALVAREZ_FERNANDEZ.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/build/dist/libs/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/build/externalLibs/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="ProjectCode/libs/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="ProjectCode/bin"/>
+</classpath>
