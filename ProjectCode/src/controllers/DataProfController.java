@@ -40,6 +40,7 @@ public class DataProfController implements Initializable{
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
 		} catch (IOException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
@@ -63,6 +64,8 @@ public class DataProfController implements Initializable{
 			professor.setLastName(TlName.getText());
 			professor.setDept(Tdepartment.getText());
 			professor.setOfficeNo(Integer.parseInt(Toffice.getText()));
+			
+			// go to labels pane
 			setChangingPane("../views/professor/DataPane.fxml");
 		}
 	}
@@ -70,12 +73,14 @@ public class DataProfController implements Initializable{
 	// set the db data
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// view
 		if (location.toString().contains("DataPane.fxml")) {
 			fName.setText(professor.getFirstName());
 			lName.setText(professor.getLastName());
 			email.setText(professor.getEmail());
 			department.setText(professor.getDept());
 			office.setText(Integer.toString(professor.getOfficeNo()));
+		// edit
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(professor.getFirstName());
 			TlName.setText(professor.getLastName());

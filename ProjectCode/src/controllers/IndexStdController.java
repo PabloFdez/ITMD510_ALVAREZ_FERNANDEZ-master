@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.DataModel;
 import models.ToolKitModel;
 
 /**
@@ -32,6 +33,7 @@ public class IndexStdController extends Application {
 			secondaryStage.setMaximized(true);
 			secondaryStage.show();
 		} catch(Exception e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
@@ -43,6 +45,7 @@ public class IndexStdController extends Application {
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
 			//System.out.println("nevo contro");
 		} catch (IOException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}

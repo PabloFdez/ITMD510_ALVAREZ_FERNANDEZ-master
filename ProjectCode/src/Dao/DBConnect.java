@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import models.DataModel;
+
 /**
  * @author Pablo Angel Alvarez Fernandez
  * @author Pablo Fernandez Diaz
@@ -30,9 +32,11 @@ public class DBConnect {
     	}
     	catch (ClassNotFoundException ex) {
     		Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE,null,ex);
+			DataModel.sendAlert("conection to DB error", "Sending automatic report");
     	}
     	catch (SQLException ex) {
     		Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE,null,ex);
+			DataModel.sendAlert("conection to DB error", "Sending automatic report");
     	}
 		return connection;
     }
