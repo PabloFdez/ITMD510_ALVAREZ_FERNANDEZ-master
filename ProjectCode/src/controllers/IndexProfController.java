@@ -26,7 +26,7 @@ public class IndexProfController extends Application {
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../views/professor/IndexProf.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/views/professor/IndexProf.fxml"));
 			Scene scene = new Scene(root,640, 480);
 			secondaryStage.setTitle("Professor Site");
 			secondaryStage.setScene(scene);
@@ -50,12 +50,12 @@ public class IndexProfController extends Application {
 	
 	public void ChangingPaneProfArea(){
 		// go to personal data feature
-		setChangingPane("../views/professor/DataPane.fxml");
+		setChangingPane("/views/professor/DataPane.fxml");
 	}
 	
 	public void ChangingPaneSetGrade(){
 		// go to set grade feature 
-		setChangingPane("../views/professor/SelectCoursePane.fxml");
+		setChangingPane("/views/professor/SelectCoursePane.fxml");
 	}
 	
 	// toolbar methods

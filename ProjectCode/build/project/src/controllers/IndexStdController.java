@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.DataModel;
 import models.ToolKitModel;
 
 /**
@@ -25,13 +26,14 @@ public class IndexStdController extends Application {
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../views/student/IndexStd.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/views/student/IndexStd.fxml"));
 			Scene scene = new Scene(root,640, 480);
 			secondaryStage.setTitle("Student Site");
 			secondaryStage.setScene(scene);
 			secondaryStage.setMaximized(true);
 			secondaryStage.show();
 		} catch(Exception e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
@@ -43,18 +45,19 @@ public class IndexStdController extends Application {
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
 			//System.out.println("nevo contro");
 		} catch (IOException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
 	
 	public void ChangingPaneStudentArea(){
 		// go to personal data feature
-		setChangingPane("../views/student/DataPane.fxml");
+		setChangingPane("/views/student/DataPane.fxml");
 	}
 	
 	public void ChangingPaneCourses(){
 		// go to see grades feature
-		setChangingPane("../views/student/GradesPane.fxml");
+		setChangingPane("/views/student/GradesPane.fxml");
 	}
 	
 	// toolbar methods

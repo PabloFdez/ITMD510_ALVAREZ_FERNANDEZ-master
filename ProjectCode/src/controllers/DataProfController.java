@@ -47,7 +47,7 @@ public class DataProfController implements Initializable{
 
 	public void EditUserData() {
 		// go to edit panel
-		setChangingPane("../views/professor/EditPane.fxml");
+		setChangingPane("/views/professor/EditPane.fxml");
 	}
 
 	public void SaveEdit() {
@@ -66,7 +66,7 @@ public class DataProfController implements Initializable{
 			professor.setOfficeNo(Integer.parseInt(Toffice.getText()));
 			
 			// go to labels pane
-			setChangingPane("../views/professor/DataPane.fxml");
+			setChangingPane("/views/professor/DataPane.fxml");
 		}
 	}
 

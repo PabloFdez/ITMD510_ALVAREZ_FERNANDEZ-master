@@ -21,7 +21,7 @@ public class ToolKitModel {
 		//application.Login.LOGGER.log(Level.INFO, PanelNuevo);
 		AnchorPane root = null;
 		try {
-			root = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/help/"+ newPanel));
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/help/"+ newPanel));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

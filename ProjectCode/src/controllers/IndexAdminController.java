@@ -36,7 +36,7 @@ public class IndexAdminController extends Application {
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../views/admin/IndexAdmin.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/views/admin/IndexAdmin.fxml"));
 			Scene scene = new Scene(root,640, 480);
 			secondaryStage.setTitle("Admin Site");
 			secondaryStage.setScene(scene);

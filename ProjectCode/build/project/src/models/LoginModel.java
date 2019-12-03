@@ -21,6 +21,7 @@ public class LoginModel {
 			return new Admin("admin","admin","admin","@admin");
 		}
 		if(pass.equals("")) {
+			DataModel.sendAlert("Null password", "Please review the data");
 			return null;
 		}
 		return new DaoModel().login(user,models.HashingModel.hash(pass));

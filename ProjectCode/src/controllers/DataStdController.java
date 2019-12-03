@@ -46,7 +46,7 @@ public class DataStdController implements Initializable{
 
 	public void EditUserData() {
 		// go to edit window
-		setChangingPane("../views/student/EditPane.fxml");
+		setChangingPane("/views/student/EditPane.fxml");
 	}
 
 	public void SaveEdit() {
@@ -64,7 +64,7 @@ public class DataStdController implements Initializable{
 			user.setMajor(Tmajor.getText());
 			
 			// view data pane
-			setChangingPane("../views/student/DataPane.fxml");
+			setChangingPane("/views/student/DataPane.fxml");
 		}
 	}
 

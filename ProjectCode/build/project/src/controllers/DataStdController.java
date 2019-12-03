@@ -39,17 +39,14 @@ public class DataStdController implements Initializable{
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
 		} catch (IOException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
 
 	public void EditUserData() {
 		// go to edit window
-		setChangingPane("../views/student/EditPane.fxml");
-	}
-
-	public static boolean isNumeric(String str) {
-		return str.matches("[+-]?\\d*(\\d+)?");
+		setChangingPane("/views/student/EditPane.fxml");
 	}
 
 	public void SaveEdit() {
@@ -65,19 +62,23 @@ public class DataStdController implements Initializable{
 			user.setFirstName(TfName.getText());
 			user.setLastName(TlName.getText());
 			user.setMajor(Tmajor.getText());
-			setChangingPane("../views/student/DataPane.fxml");
+			
+			// view data pane
+			setChangingPane("/views/student/DataPane.fxml");
 		}
 	}
 
 	// set the db data
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// view
 		if (location.toString().contains("DataPane.fxml")) {
 			fName.setText(user.getFirstName());
 			lName.setText(user.getLastName());
 			email.setText(user.getEmail());
 			major.setText(user.getMajor());
 			gpa.setText(Double.toString(user.getGpa()));
+		// edit
 		} else if (location.toString().contains("EditPane.fxml")) {
 			TfName.setText(user.getFirstName());
 			TlName.setText(user.getLastName());

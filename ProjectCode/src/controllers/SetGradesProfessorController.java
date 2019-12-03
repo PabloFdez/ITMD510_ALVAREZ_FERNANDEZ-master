@@ -31,7 +31,7 @@ public class SetGradesProfessorController implements Initializable {
 	public void selectStudents(){
 		//System.out.println(pCourse.getText());
 		LoginController.courseID = Integer.parseInt(pCourse.getText());
-		setChangingPane("../views/professor/SelectStudentGradePane.fxml");
+		setChangingPane("/views/professor/SelectStudentGradePane.fxml");
 	}
 	
 	@Override

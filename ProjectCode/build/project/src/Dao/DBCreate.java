@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.*;
+import models.DataModel;
 
 /**
  * @author Pablo Angel Alvarez Fernandez
@@ -38,6 +39,8 @@ public class DBCreate {
 				System.out.println("Database was previously created");
 			}
 		} catch (SQLException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
+
 			e.printStackTrace();
 		}
 		return created;

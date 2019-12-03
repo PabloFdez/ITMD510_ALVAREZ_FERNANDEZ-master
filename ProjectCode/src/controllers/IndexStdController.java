@@ -26,7 +26,7 @@ public class IndexStdController extends Application {
 	@Override
 	public void start(Stage secondaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../views/student/IndexStd.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/views/student/IndexStd.fxml"));
 			Scene scene = new Scene(root,640, 480);
 			secondaryStage.setTitle("Student Site");
 			secondaryStage.setScene(scene);
@@ -52,12 +52,12 @@ public class IndexStdController extends Application {
 	
 	public void ChangingPaneStudentArea(){
 		// go to personal data feature
-		setChangingPane("../views/student/DataPane.fxml");
+		setChangingPane("/views/student/DataPane.fxml");
 	}
 	
 	public void ChangingPaneCourses(){
 		// go to see grades feature
-		setChangingPane("../views/student/GradesPane.fxml");
+		setChangingPane("/views/student/GradesPane.fxml");
 	}
 	
 	// toolbar methods

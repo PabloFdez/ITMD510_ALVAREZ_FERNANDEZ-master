@@ -33,7 +33,7 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 		DaoModel.updateCourseStudentGrade(LoginController.courseID, Integer.parseInt(pStudent.getText()), Double.parseDouble(pGrade.getText())); 
 		DaoModel.updateStudentGPA(Integer.parseInt(pStudent.getText())); 
 		// Update of the student's grade
-		setChangingPane("../views/professor/SelectStudentGradePane.fxml");
+		setChangingPane("/views/professor/SelectStudentGradePane.fxml");
 	}
 	
 	@Override

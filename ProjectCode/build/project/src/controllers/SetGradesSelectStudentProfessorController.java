@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import models.DataModel;
 
 /**
  * @author Pablo Angel Alvarez Fernandez
@@ -32,13 +33,14 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 		DaoModel.updateCourseStudentGrade(LoginController.courseID, Integer.parseInt(pStudent.getText()), Double.parseDouble(pGrade.getText())); 
 		DaoModel.updateStudentGPA(Integer.parseInt(pStudent.getText())); 
 		// Update of the student's grade
-		setChangingPane("../views/professor/SelectStudentGradePane.fxml");
+		setChangingPane("/views/professor/SelectStudentGradePane.fxml");
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		String[] students = DaoModel.selectStudentsOfCourse(LoginController.courseID);
 		
+		// show student grid
 		int row = 0;
 		String studentsName = "";
 		while(students[row] != null) {
@@ -58,8 +60,8 @@ public class SetGradesSelectStudentProfessorController implements Initializable 
 			ChangingPane.getChildren().clear();
 			ChangingPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource(PanelNuevo)));
 		} catch (IOException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 	}
-
 }

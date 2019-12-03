@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import application.*;
 import models.AcademicMember;
+import models.DataModel;
 
 /**
  * @author Pablo Angel Alvarez Fernandez
@@ -14,19 +15,17 @@ import models.AcademicMember;
  * DaoModel class
  * Dao stands for Data Access Object, defines 
  * CRUD (Create Read Update Delete) like operations
+ * 
+ * Methods name auto-explicatives
  */
 public class DaoModel {
 	//static Connection con = null;
 	//static DaoModel DB = null;
 	//private boolean created = false;
 
-	/**
-	 * constructor
-	 * @return 
-	 */
-	public DaoModel() { // create db object instance
+	//public DaoModel() { // create db object instance
 		//if(!created) new DBCreate(); created = true;
-	}
+	//}
 
 	public static void createTables(){
 
@@ -57,7 +56,8 @@ public class DaoModel {
 		DaoModel.QueryUpd(sql14);
 		DaoModel.QueryUpd(sql15);*/
 		
-		ResultSet rs = null;
+		// SELECT to check the content of the table
+		/*ResultSet rs = null;
 		rs = QueryResu("SELECT * FROM papf_professors;");
 		try {
 			while(rs.next()){
@@ -65,7 +65,7 @@ public class DaoModel {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		new DBCreate();
 	}
@@ -80,6 +80,8 @@ public class DaoModel {
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"','', '"+objs.getMajor()+"', "+objs.getGpa()+")";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
+		} else {
+			DataModel.sendAlert("Insert error", "Not inserted");
 		}
 	}
 
@@ -93,6 +95,8 @@ public class DaoModel {
 				"VALUES ('"+objs.getFirstName()+"', '"+objs.getLastName()+"', '"+objs.getEmail()+"','', '"+objs.getDept()+"', "+objs.getOfficeNo()+")";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
+		} else {
+			DataModel.sendAlert("Insert error", "Not inserted");
 		}
 	}
 
@@ -106,6 +110,8 @@ public class DaoModel {
 				"VALUES ('"+objs.getUniAcronym()+"','"+objs.getUniName()+"','"+objs.getUniCity()+"',"+objs.getUniZipCode()+");";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
+		} else {
+			DataModel.sendAlert("Insert error", "Not inserted");
 		}
 	}
 
@@ -119,6 +125,8 @@ public class DaoModel {
 				"VALUES ('"+objs.getcName()+"', "+objs.getnCredits()+", "+objs.getProf().getId()+", '"+objs.getUni().getUniAcronym()+"')";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
+		} else {
+			DataModel.sendAlert("Insert error", "Not inserted");
 		}
 	}	
 
@@ -132,6 +140,8 @@ public class DaoModel {
 		String sql = "INSERT INTO papf_courseStudents(cID, eID, eGrade) VALUES ("+cID+", "+eID+","+eGrade+")";
 		if(QueryUpd(sql)){
 			System.out.println("Element inserted.");
+		} else {
+			DataModel.sendAlert("Insert error", "Not inserted");
 		}
 	}	
 
@@ -145,7 +155,7 @@ public class DaoModel {
 				return new University(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null; 
@@ -160,7 +170,7 @@ public class DaoModel {
 				return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null; 
@@ -175,7 +185,7 @@ public class DaoModel {
 				return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getInt(7));				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null; 
@@ -190,7 +200,7 @@ public class DaoModel {
 				return new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getString(6));				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null; 
@@ -205,7 +215,7 @@ public class DaoModel {
 				return new Course(rs.getInt(1),rs.getString(2),rs.getInt(3),selectProfessor2(rs.getInt(4)),selectUniversity(rs.getString(5))); // Sacar los estudiantes del curso				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null; 
@@ -220,7 +230,7 @@ public class DaoModel {
 				return rs.getString(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return null;
@@ -242,7 +252,7 @@ public class DaoModel {
 				aux++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return cursos;				
@@ -265,7 +275,7 @@ public class DaoModel {
 			}
 				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return studentsName;	
@@ -285,7 +295,7 @@ public class DaoModel {
 				aux++;
 			}				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return students;				
@@ -353,24 +363,35 @@ public class DaoModel {
 
 	public static void updateStudent(int id, String fName, String lName, String major) {
 		String sql = "UPDATE papf_students SET eFName='"+fName+"', eLName='"+lName+"', eMaj='"+major+"' WHERE eID="+id+";";
-		QueryUpd(sql);
+		if(QueryUpd(sql)){
+			System.out.println("Element updated.");
+		} else {
+			DataModel.sendAlert("Update error", "Not inserted");
+		}
 	}
 
 	public static void updateProfessor(int id, String fName, String lName, String department, int office) {
 		String sql = "UPDATE papf_professors SET pFName='"+fName+"', pLName='"+lName+"', pDept='"+department+"', pOffi="+office+" WHERE pID="+id+";";
-		QueryUpd(sql);
-	}
+		if(QueryUpd(sql)){
+			System.out.println("Element updated.");
+		} else {
+			DataModel.sendAlert("Update error", "Not inserted");
+		}	}
 
 	public static void updateCourseStudentGrade(int cID, int eID, double eGrade) {
 		String sql = "UPDATE papf_courseStudents SET eGrade="+Double.toString(eGrade)+" WHERE eID="+eID+" AND cID="+cID+";";
-		QueryUpd(sql);
-	}
+		if(QueryUpd(sql)){
+			System.out.println("Element updated.");
+		} else {
+			DataModel.sendAlert("Update error", "Not inserted");
+		}	}
 	
 	public static void updateStudentGPA(int eID) {
 		Grade[] grad = getStdCoursesGPA(eID);
 		double grades_sum = 0.0;
 		int count_courses = 0;
 		int i=0;
+		// pass decimal note to GPA
 		while(grad[i] != null) {
 			if(grad[i].getGrade() != 0.0) {
 				if(grad[i].getGrade() >= 9) {
@@ -391,9 +412,13 @@ public class DaoModel {
 		double gpa = grades_sum*count_courses/count_courses;
 		System.out.println(Double.toString(gpa));
 		String sql = "UPDATE papf_students SET eGPA="+Double.toString(gpa)+" WHERE eID="+eID+";";
-		QueryUpd(sql);
-		Student std = selectStudent("Alvarez");
-		System.out.println(std.getGpa());
+		if(QueryUpd(sql)){
+			System.out.println("Element updated.");
+		} else {
+			DataModel.sendAlert("Update error", "Not inserted");
+		}
+		//Student std = selectStudent("Alvarez");
+		//System.out.println(std.getGpa());
 	}
 
 	private static Grade[] getStdCoursesGPA(int eID) {
@@ -413,7 +438,7 @@ public class DaoModel {
 				aux++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 		return grad;
@@ -433,6 +458,7 @@ public class DaoModel {
 			// con.close();
 			return result;
 		} catch (Exception e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 			return null;
 		}
@@ -448,6 +474,7 @@ public class DaoModel {
 			con.close();
 			return true;
 		} catch (Exception e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 			return false;
 		}
@@ -464,6 +491,7 @@ public class DaoModel {
 				AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-13));
 			}
 		} catch (SQLException e) {
+			DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 			e.printStackTrace();
 		}
 
@@ -475,10 +503,13 @@ public class DaoModel {
 					AMaux.setEmail(AMaux.getEmail().substring(0,AMaux.getEmail().length()-8));
 				}
 			} catch (SQLException e) {
+				DataModel.sendAlert("Show error", "Please talk to admin: "+e.toString().substring(0, 40));
 				e.printStackTrace();
 			}
 		}
-
+		if(AMaux == null) {
+			DataModel.sendAlert("User not found", "Please review the data");
+		}
 		return AMaux; 
 	}
 }
